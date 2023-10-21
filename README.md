@@ -40,6 +40,7 @@ node index.js
 ```
 The application will start, and you will see a message in the terminal indicating that the server is running.
 
+To view in browser, go to http://localhost:3000/
 ## 4. Stopping the Application
 
 To stop the application, simply press `Ctrl + C` in the terminal where the application is running. This will terminate the server.
