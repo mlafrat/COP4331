@@ -1,30 +1,27 @@
-// register.js
 const express = require("express");
 const router = express.Router();
 
-// Fake user data for demonstration
-let users = [
-    { username: "user1", password: "password1" },
-    { username: "user2", password: "password2" },
-];
+module.exports = function(db) {
+    // Define a route for handling registration
+    router.post("/", async (req, res) => {
+        const { username, password, email } = req.body;
 
-router.get("/", (req, res) => {
-    res.send("Registration Page");
-});
+        try {
+            const existingUser = await db.collection("userData").findOne({ username });
 
-router.post("/", (req, res) => {
-    const { username, password } = req.body;
+            if (existingUser) {
+                // User with the same username already exists
+                res.status(400).send("Username already exists");
+            } else {
+                // Create a new user
+                await db.collection("userData").insertOne({ username, password, email });
+                res.send("Registration successful!");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            res.status(500).send("Internal Server Error");
+        }
+    });
 
-    // Check if the username is already taken
-    const userExists = users.some(user => user.username === username);
-
-    if (userExists) {
-        res.status(409).send("Username already exists.");
-    } else {
-        users.push({ username, password }); // Add the new user to the fake user data
-        res.send("Registration successful!");
-        console.log(users);
-    }
-});
-
-module.exports = router;
+    return router;
+};

@@ -1,23 +1,33 @@
-// index.js
 const express = require("express");
 const app = express();
-const loginRouter = require("./routes/login");
-const registerRouter = require("./routes/register");
+const { MongoClient } = require("mongodb");
 
-app.use(express.json());
+// Define the MongoDB connection string and database name
+const mongoUri = "mongodb+srv://root:root@cluster0.n9pqz32.mongodb.net/test?retryWrites=true&w=majority";
+const dbName = "microwaveDatabase";
 
-app.get("/", (request, response) => {
-    response.send("Hi there");
-});
+// Connect to MongoDB using MongoClient
+const client = new MongoClient(mongoUri, {});
+client.connect()
+    .then(() => {
+        const db = client.db(dbName); // Define db reference here
 
-// Use the login and register routers
-app.use("/login", loginRouter);
-app.use("/register", registerRouter);
+        app.use(express.json());
 
-app.get("/getlocation", (request, response) => {
-    response.sendFile(__dirname + "/html/location.html");
-});
+        app.get("/", (request, response) => {
+            response.send("Hi there");
+        });
+        const loginRouter = require("./routes/login")
+        const registerRouter = require("./routes/register");
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000...");
-});
+        // Pass the MongoDB database reference to your route handlers
+        app.use("/login", loginRouter(db));
+        app.use("/register", registerRouter(db));
+
+        app.listen(3000, () => {
+            console.log("Listening on port 3000...");
+        });
+    })
+    .catch(err => {
+        console.error("Error connecting to MongoDB:", err);
+    });
