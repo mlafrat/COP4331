@@ -7,16 +7,24 @@ module.exports = function(db) {
         const { username, password, email } = req.body;
 
         try {
-            const existingUser = await db.collection("userData").findOne({ username });
+            const existingUser = await db.collection("userData").findOne({ $or: [{ username }, { email }] });
 
             if (existingUser) {
-                // User with the same username already exists
-                res.status(400).send("Username already exists");
-            } else {
-                // Create a new user
-                await db.collection("userData").insertOne({ username, password, email });
-                res.send("Registration successful!");
+                return res.status(400).send("User with this username or email already exists.");
             }
+
+            const lastUser = await db.collection("userData").find().sort({ user_id: -1 }).limit(1).toArray();
+            const lastUserId = lastUser.length > 0 ? lastUser[0].user_id : 0;
+
+            const user = {
+                user_id: lastUserId + 1,
+                username,
+                password,
+                email
+            };
+
+            await db.collection("userData").insertOne(user);
+            res.send("Registration successful!");
         } catch (error) {
             console.error("Error:", error);
             res.status(500).send("Internal Server Error");

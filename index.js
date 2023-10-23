@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const { MongoClient } = require("mongodb");
+const loginRouter = require("./routes/login")
+const registerRouter = require("./routes/register");
 
 // Define the MongoDB connection string and database name
 const mongoUri = "mongodb+srv://root:root@cluster0.n9pqz32.mongodb.net/test?retryWrites=true&w=majority";
@@ -17,8 +19,6 @@ client.connect()
         app.get("/", (request, response) => {
             response.send("Hi there");
         });
-        const loginRouter = require("./routes/login")
-        const registerRouter = require("./routes/register");
 
         // Pass the MongoDB database reference to your route handlers
         app.use("/login", loginRouter(db));
