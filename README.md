@@ -31,7 +31,7 @@ npm install
 
 2. Install Frontend Dependencies:
 ```bash
-cd COP4331
+cd login
 npm install
 cd ..
 ```
