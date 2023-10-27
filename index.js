@@ -1,5 +1,9 @@
 const express = require('express');
+const cors = require('cors'); // Import cors module
+
 const app = express();
+
+app.use(cors()); // Use cors middleware
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,8 +47,8 @@ connectToMongo()
             res.send("Success! You have logged in with Google.");
         });
 
-        app.listen(3000, () => {
-            console.log('Listening on port 3000...');
+        app.listen(3001, () => {
+            console.log('Listening on port 3001...');
         });
     })
     .catch(error => {
