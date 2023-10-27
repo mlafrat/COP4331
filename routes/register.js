@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 module.exports = function(db) {
     // Define a route for handling registration
@@ -16,10 +17,13 @@ module.exports = function(db) {
             const lastUser = await db.collection("userData").find().sort({ user_id: -1 }).limit(1).toArray();
             const lastUserId = lastUser.length > 0 ? lastUser[0].user_id : 0;
 
+            // Hash the password before storing it
+            const hashedPassword = await bcrypt.hash(password, 10);
+
             const user = {
                 user_id: lastUserId + 1,
                 username,
-                password,
+                password: hashedPassword, // Store the hashed password
                 email
             };
 
