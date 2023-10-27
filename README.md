@@ -28,7 +28,15 @@ cd COP4331
 ```bash
 npm install
 ```
-2. Start the Application:
+
+2. Install Frontend Dependencies:
+```bash
+cd COP4331
+npm install
+cd ..
+```
+
+3. Start the Application:
 
    To start the React application, run the following command:
 
