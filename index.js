@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Import configurations
@@ -34,9 +35,13 @@ connectToMongo()
         app.get("/auth/google/callback",
             passport.authenticate("google", {
                 successRedirect: "/success",
-                failureRedirect: "/login"
+                failureRedirect: "./routes/login"
             })
         );
+
+        app.get("/success", (req, res) => {
+            res.send("Success! You have logged in with Google.");
+        });
 
         app.listen(3000, () => {
             console.log('Listening on port 3000...');
