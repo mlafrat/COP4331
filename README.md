@@ -47,7 +47,7 @@ The application will start, and you you should be redirected to http://localhost
 
 
 ## 4. Running the Backend
-1. Open a SECOND terminal (be sure to leave your backend server running on port 3001!)
+1. Open a SECOND terminal (be sure to leave your react app running on port 3000!)
 2. Install Dependencies:
 
    In your terminal, run the following command to install the necessary dependencies:
