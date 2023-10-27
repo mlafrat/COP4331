@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'; // Import useHistory
+import { useHistory } from 'react-router-dom';
 import './Login.css';
 
-export default function Login() {
+export default function Login({ setToken }) {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
 
-  const history = useHistory(); // Initialize useHistory
+  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,22 +24,23 @@ export default function Login() {
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData)
     });
 
     if (response.ok) {
-      const contentType = response.headers.get('content-type');
+      const contentType = response.headers.get('content-type')
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
-        console.log(data); // Handle successful login
-        history.push('/Dashboard'); // Redirect to Dashboard
+        setToken(data.token);
+        // Redirect to the dashboard
+        history.push('/dashboard');
       } else {
-        console.log(await response.text()); // Handle non-JSON response
+        console.log(await response.text());
       }
     } else {
-      console.error('Error:', response.statusText); // Handle error
+      console.error('Error:', response.statusText);
     }
   };
 

@@ -11,18 +11,15 @@ module.exports = function(db) {
             const user = await db.collection("userData").findOne({ username });
 
             if (user) {
-                // Compare the provided password with the hashed password from the database
                 const isPasswordValid = await bcrypt.compare(password, user.password);
 
                 if (isPasswordValid) {
-                    // Passwords match, handle successful login
-                    res.send("Login successful!");
+                    res.setHeader('Content-Type', 'application/json'); // Set Content-Type header
+                    res.send(JSON.stringify({ message: 'Login successful' }));
                 } else {
-                    // Passwords do not match
                     res.status(401).send("Invalid credentials");
                 }
             } else {
-                // User not found
                 res.status(401).send("Invalid credentials");
             }
         } catch (error) {
