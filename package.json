@@ -19,7 +19,7 @@
     "client": "cd login && npm start",
     "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
     "server-dev": "nodemon index.js",
-    "client-dev": "cd client && npm start"
+    "client-dev": "cd login && npm start"
   },
   "keywords": [],
   "author": "",
