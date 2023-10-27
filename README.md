@@ -1,4 +1,4 @@
-# Express Application
+# Knightrowave
 
 ## 1. Prerequisites
 
@@ -21,9 +21,34 @@ git clone https://github.com/AllisonDT/COP4331.git
 cd COP4331
 ```
 
-## 3. Running the Application
+## 3. Running the Frontend
+1. Navigate to the login directory in your terminal.
 
-1. Install Dependencies:
+```bash
+cd login
+```
+
+2. Install Dependencies:
+
+   In your terminal, run the following command to install the necessary dependencies:
+
+```bash
+npm install
+```
+3. Start the Application:
+
+   To start the React application, run the following command:
+
+```bash
+npm start
+```
+
+The application will start, and you you should be redirected to http://localhost:3000/
+
+
+## 4. Running the Backend
+1. Open a SECOND terminal (be sure to leave your backend server running on port 3001!)
+2. Install Dependencies:
 
    In your terminal, run the following command to install the necessary dependencies:
 
@@ -31,7 +56,7 @@ cd COP4331
 npm install
 ```
 
-2. Start the Application:
+3. Start the Application:
 
    To start the Express application, run the following command:
 
@@ -40,7 +65,9 @@ node index.js
 ```
 The application will start, and you will see a message in the terminal indicating that the server is running.
 
-To view in browser, go to http://localhost:3000/
-## 4. Stopping the Application
+To view in browser, go to http://localhost:3001/
+
+## 5. Stopping the Application
 
 To stop the application, simply press `Ctrl + C` in the terminal where the application is running. This will terminate the server.
+
