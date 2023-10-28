@@ -28,7 +28,17 @@ module.exports = function(db) {
             };
 
             await db.collection("userData").insertOne(user);
+
+            // add default settings 
+            const defaultSettings = {
+                theme: 1,
+                public: false,
+                user_id: lastUserId + 1
+            };           
+            await db.collection("userSettings").insertOne(defaultSettings);
+            
             res.send("Registration successful!");
+
         } catch (error) {
             console.error("Error:", error);
             res.status(500).send("Internal Server Error");
