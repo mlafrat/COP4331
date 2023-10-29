@@ -31,6 +31,7 @@ connectToMongo()
         // Define your routes here
         app.use('/login', require('./routes/login')(db));
         app.use('/register', require('./routes/register')(db));
+        app.use('/changeSettings', require('./routes/changeSettings')(db));
 
         app.get('/', (req, res) => {
             res.send('Hi there');
