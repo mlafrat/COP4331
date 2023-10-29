@@ -10,7 +10,7 @@
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0"
   },
-  "name": "ideaprojects",
+  "name": "knightrowave",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
