@@ -30,11 +30,10 @@ export default function Login({ setToken }) {
     });
 
     if (response.ok) {
-      const contentType = response.headers.get('content-type')
+      const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
         setToken(data.token);
-        // Redirect to the dashboard
         history.push('/dashboard');
       } else {
         console.log(await response.text());
