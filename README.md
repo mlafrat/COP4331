@@ -31,7 +31,7 @@ npm install
 
 2. Install Frontend Dependencies:
 ```bash
-cd login
+cd client
 npm install
 cd ..
 ```
@@ -52,7 +52,7 @@ You can ignore steps 4 and 5 of this readme unless you want to run the frontend 
 1. Navigate to the login directory in your terminal.
 
 ```bash
-cd login
+cd client
 ```
 
 2. Install Dependencies:
