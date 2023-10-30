@@ -6,6 +6,7 @@ import Login from '../Login/Login';
 import Preferences from '../Preferences/Preferences';
 
 function App() {
+    // eslint-disable-next-line
     const [token, setToken] = useState();
 
     return (
