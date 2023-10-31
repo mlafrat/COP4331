@@ -34,10 +34,10 @@ module.exports = function(db) {
                 theme: 1,
                 public: false,
                 user_id: lastUserId + 1
-            };           
+            };
             await db.collection("userSettings").insertOne(defaultSettings);
-            
-            res.send("Registration successful!");
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json({ message: "Registration successful" });
 
         } catch (error) {
             console.error("Error:", error);
