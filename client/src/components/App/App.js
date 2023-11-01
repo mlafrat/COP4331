@@ -3,7 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from '../Dashboard/Dashboard';
 import Login from '../Login/Login';
-import Preferences from '../Preferences/Preferences';
+import Register from '../Register/Register';
+
+
 
 function App() {
     // eslint-disable-next-line
@@ -17,8 +19,8 @@ function App() {
                     <Route path="/dashboard">
                         <Dashboard />
                     </Route>
-                    <Route path="/preferences">
-                        <Preferences />
+                    <Route path="/register">
+                        <Register />
                     </Route>
                     <Route path="/">
                         <Login setToken={setToken} />
