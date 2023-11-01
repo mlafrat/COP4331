@@ -32,6 +32,8 @@ connectToMongo()
         app.use('/login', require('./server/routes/login')(db));
         app.use('/register', require('./server/routes/register')(db));
         app.use('/changeSettings', require('./server/routes/changeSettings')(db));
+        app.use( '/handleGoogleLogin', require('./server/routes/google-login-handler')(db));
+
 
         app.get('/', (req, res) => {
             res.send('Hi there');
@@ -39,8 +41,8 @@ connectToMongo()
 
         app.get("/auth/google/callback",
             passport.authenticate("google", {
-                successRedirect: "http://localhost:3000/dashboard", // Redirect to your React dashboard
-                failureRedirect: "/login" // Redirect to your login page if authentication fails
+                successRedirect: "/handleGoogleLogin",
+                failureRedirect: "/login"
             })
         );
 
