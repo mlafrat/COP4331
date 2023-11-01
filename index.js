@@ -39,8 +39,8 @@ connectToMongo()
 
         app.get("/auth/google/callback",
             passport.authenticate("google", {
-                successRedirect: "/success",
-                failureRedirect: "./routes/login"
+                successRedirect: "http://localhost:3000/dashboard", // Redirect to your React dashboard
+                failureRedirect: "/login" // Redirect to your login page if authentication fails
             })
         );
 

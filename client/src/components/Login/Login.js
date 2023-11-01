@@ -58,6 +58,7 @@ export default function Login({ setToken }) {
           <div>
             <button type="submit">Submit</button>
           </div>
+          <a href="http://localhost:3001/auth/google/callback">Login with Google</a>
         </form>
       </div>
   );
