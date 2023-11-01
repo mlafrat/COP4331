@@ -7,7 +7,7 @@ module.exports = function(db) {
         const { theme, public, user_id } = req.body;
 
         try {
-
+            res.setHeader('Content-Type', 'application/json');
             await db.collection("userSettings").updateOne(
                 { user_id },
                 {
