@@ -9,9 +9,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Import configurations
-const passport = require('./config/passport-config');
-const sessionMiddleware = require('./config/session-config');
-const connectToMongo = require('./config/mongo-config');
+const passport = require('./server/config/passport-config');
+const sessionMiddleware = require('./server/config/session-config');
+const connectToMongo = require('./server/config/mongo-config');
 
 // Use session middleware
 app.use(sessionMiddleware);
@@ -29,9 +29,9 @@ connectToMongo()
         db = database;
 
         // Define your routes here
-        app.use('/login', require('./routes/login')(db));
-        app.use('/register', require('./routes/register')(db));
-        app.use('/changeSettings', require('./routes/changeSettings')(db));
+        app.use('/login', require('./server/routes/login')(db));
+        app.use('/register', require('./server/routes/register')(db));
+        app.use('/changeSettings', require('./server/routes/changeSettings')(db));
 
         app.get('/', (req, res) => {
             res.send('Hi there');
