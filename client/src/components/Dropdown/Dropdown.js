@@ -42,7 +42,7 @@ function Dropdown() {
           <img src={knightro} alt="User Avatar" />
         </div>
 
-        <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
+        <div className={`dropdown-menu ${open? 'active' : 'inactive'}`} >
           <h3>Knightro<br/></h3>
           <ul>
             <DropdownItem img = {user} text = {"Profile Settings"}/>
