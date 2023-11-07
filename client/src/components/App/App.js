@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 import Dashboard from '../Dashboard/Dashboard';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import Dropdown from '../Dropdown/Dropdown';
 
 function App() {
     const [token, setToken] = useState();
@@ -18,6 +19,7 @@ function App() {
                     </Route>
                     <Route path="/dashboard">
                         <Dashboard/>
+                        <Dropdown/>
                     </Route>
                     <Route path="/login">
                         <Login setToken={setToken}/>
