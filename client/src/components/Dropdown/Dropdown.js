@@ -45,9 +45,9 @@ function Dropdown() {
         <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
           <h3>Knightro<br/></h3>
           <ul>
-            <DropdownItem img={user} text="Profile Settings" />
-            <DropdownItem img={edit} text="My Reviews" />
-            <DropdownItem img={inbox} text="Found a Microwave?" />
+            <DropdownItem img = {user} text = {"Profile Settings"}/>
+            <DropdownItem img = {edit} text = {"My Reviews"}/>
+            <DropdownItem img = {inbox} text = {"Found a Microwave?"}/>
             <li className='dropdownItem'>
               <Link to="/login">
                 <img src={logout} alt="Logout" />
