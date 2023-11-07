@@ -38,22 +38,22 @@ function Dropdown() {
   return (
     <div className="Dropdown">
       <div className='menu-container' ref={dropRef}>
-        <div className='menu-trigger' onClick={() => setOpen(!open)}>
-          <img src={knightro} alt="User Avatar" />
+        <div className='menu-trigger' onClick={()=>{setOpen(!open)}}>
+          <img src={knightro}></img>
         </div>
 
         <div className={`dropdown-menu ${open? 'active' : 'inactive'}`} >
           <h3>Knightro<br/></h3>
           <ul>
-            <DropdownItem img = {user} text = {"Profile Settings"}/>
-            <DropdownItem img = {edit} text = {"My Reviews"}/>
-            <DropdownItem img = {inbox} text = {"Found a Microwave?"}/>
             <li className='dropdownItem'>
-              <Link to="/login">
-                <img src={logout} alt="Logout" />
-                Logout
+              <Link to="/profile-settings">
+                <img src={user} alt="Profile Settings" />
+                Profile Settings
               </Link>
             </li>
+            <DropdownItem img = {edit} text = {"My Reviews"}/>
+            <DropdownItem img = {inbox} text = {"Found a Microwave?"}/>
+            <DropdownItem img = {logout} text = {"Logout"}/>
           </ul>
         </div>
       </div>
@@ -65,7 +65,7 @@ function Dropdown() {
 function DropdownItem(props){
   return(
     <li className = 'dropdownItem'>
-      <img src={props.img} alt={props.img}></img>
+      <img src={props.img}></img>
       <txt> {props.text} </txt>
     </li>
   );
