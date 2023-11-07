@@ -36,28 +36,28 @@ function Dropdown() {
   // Shows each menu dropdown item with icons when the dropdown is open.
   // User's photo is also shown initially on menu button.
   return (
-      <div className="Dropdown">
-        <div className='menu-container' ref={dropRef}>
-          <div className='menu-trigger' onClick={() => setOpen(!open)}>
-            <img src={knightro} alt="User Avatar" />
-          </div>
+    <div className="Dropdown">
+      <div className='menu-container' ref={dropRef}>
+        <div className='menu-trigger' onClick={() => setOpen(!open)}>
+          <img src={knightro} alt="User Avatar" />
+        </div>
 
-          <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
-            <h3>Knightro<br/></h3>
-            <ul>
-              <DropdownItem img={user} text="Profile Settings" />
-              <DropdownItem img={edit} text="My Reviews" />
-              <DropdownItem img={inbox} text="Found a Microwave?" />
-              <li className='dropdownItem'>
-                <Link to="/login">
-                  <img src={logout} alt="Logout" />
-                  Logout
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
+          <h3>Knightro<br/></h3>
+          <ul>
+            <DropdownItem img={user} text="Profile Settings" />
+            <DropdownItem img={edit} text="My Reviews" />
+            <DropdownItem img={inbox} text="Found a Microwave?" />
+            <li className='dropdownItem'>
+              <Link to="/login">
+                <img src={logout} alt="Logout" />
+                Logout
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
+    </div>
   );
 }
 
