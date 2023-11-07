@@ -34,7 +34,7 @@ export default function SignUp() {
         const data = await response.json();
 
         if (response.ok) {
-            history.push("/dashboard"); // Redirect to the dashboard
+            history.push("/login"); // Redirect to the dashboard
         } else {
             alert(data); // Error message from the server
         }
