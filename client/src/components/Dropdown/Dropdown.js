@@ -26,6 +26,11 @@ function Dropdown() {
     };
   }, []);
 
+  const handleLogout = () => {
+    // Remove the user cookie when logging out
+    Cookies.remove('user');
+  };
+
   // Retrieve user data from cookie
   const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
   const userName = userData ? userData.username : '';
@@ -44,7 +49,7 @@ function Dropdown() {
               <DropdownItem img={edit} text={"My Reviews"} />
               <DropdownItem img={inbox} text={"Found a Microwave?"} />
               <li className='dropdownItem'>
-                <Link to="/login">
+                <Link to="/login" onClick={handleLogout}>
                   <img src={logout} alt="Logout" />
                   Logout
                 </Link>
@@ -59,10 +64,10 @@ function Dropdown() {
 // Shows properties of each item in their formatting order using a list.
 function DropdownItem(props){
   return(
-    <li className = 'dropdownItem'>
-      <img src={props.img} alt={props.img}></img>
-      <txt> {props.text} </txt>
-    </li>
+      <li className = 'dropdownItem'>
+        <img src={props.img} alt={props.img}></img>
+        <txt> {props.text} </txt>
+      </li>
   );
 }
 

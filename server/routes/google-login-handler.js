@@ -9,6 +9,15 @@ module.exports = function(db) {
 
         if (existingUser) {
             // User with the same email already exists, redirect to dashboard
+            const user = {
+                user_id: existingUser.user_id,
+                username: existingUser.username,
+                email: existingUser.email
+            };
+
+            // Set user data in a cookie
+            res.cookie('user', JSON.stringify(user), { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) }); // Expires in 7 days
+
             res.redirect('http://localhost:3000/dashboard');
         } else {
             // User is not in the database, proceed with insertion
@@ -30,6 +39,9 @@ module.exports = function(db) {
                 user_id: user_id
             };
             await db.collection("userSettings").insertOne(defaultSettings);
+
+            // Set user data in a cookie
+            res.cookie('user', JSON.stringify(user), { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) }); // Expires in 7 days
 
             res.redirect('http://localhost:3000/dashboard');
         }
