@@ -7,6 +7,7 @@ import Register from '../Register/Register';
 import Dropdown from '../Dropdown/Dropdown';
 import ProfileSettings from '../ProfileSettings/ProfileSettings';
 import ChangePassword from '../ChangePassword/ChangePassword';
+import FoundMicrowave from '../FoundMicrowave/FoundMicrowave';
 
 function App() {
     const [token, setToken] = useState();
@@ -29,6 +30,10 @@ function App() {
                     </Route>
                     <Route path="/change-password">
                         <ChangePassword/>
+                        <Dropdown/>
+                    </Route>
+                    <Route path="/found-microwave">
+                        <FoundMicrowave/>
                         <Dropdown/>
                     </Route>
                     <Route path="/login">

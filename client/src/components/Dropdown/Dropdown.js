@@ -52,7 +52,12 @@ function Dropdown() {
               </Link>
             </li>
             <DropdownItem img = {edit} text = {"My Reviews"}/>
-            <DropdownItem img = {inbox} text = {"Found a Microwave?"}/>
+            <li className='dropdownItem'>
+              <Link to="/found-microwave">
+                <img src={inbox} alt="Found a Microwave?" />
+                Found a Microwave?
+              </Link>
+            </li>
             <DropdownItem img = {logout} text = {"Logout"}/>
           </ul>
         </div>

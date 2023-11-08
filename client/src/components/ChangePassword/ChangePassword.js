@@ -1,5 +1,4 @@
 import './ChangePassword.css'
-import React, {useState} from 'react';
 import Button from '@material-ui/core/Button'
 
 function ChangePassword() {

@@ -1,5 +1,4 @@
 import './ProfileSettings.css';
-import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 
 
@@ -28,7 +27,7 @@ function ProfileSettings() {
                 </div>
                 <div>
                     <Button component="label" variant="contained">
-                        Upload file
+                        Change Profile Picture
                         <input type="file" accept="image/*" style={{ display: 'none' }}/>
                     </Button>
                 </div>
