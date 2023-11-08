@@ -15,7 +15,7 @@ module.exports = function (db) {
 
                 if (isPasswordValid) {
                     res.setHeader('Content-Type', 'application/json'); // Set Content-Type header
-                    res.send(JSON.stringify({message: 'Login successful'}));
+                    res.send(JSON.stringify({message: 'Login successful', user}));
                 } else {
                     res.status(401).send("Invalid credentials");
                 }

@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './Login.css';
+import Cookies from 'js-cookie';
 
-export default function Login({setToken}) {
+export default function Login({ setToken }) {
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -11,7 +12,7 @@ export default function Login({setToken}) {
     const history = useHistory();
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value
@@ -34,6 +35,10 @@ export default function Login({setToken}) {
             if (contentType && contentType.includes('application/json')) {
                 const data = await response.json();
                 setToken(data.token);
+
+                // Save user data in a cookie
+                Cookies.set('user', JSON.stringify(data.user), { expires: 7 }); // Expires in 7 days
+
                 history.push('/dashboard');
             } else {
                 console.log(await response.text());
@@ -49,11 +54,11 @@ export default function Login({setToken}) {
             <form onSubmit={handleSubmit}>
                 <label>
                     <p>Username</p>
-                    <input type="text" name="username" value={formData.username} onChange={handleChange}/>
+                    <input type="text" name="username" value={formData.username} onChange={handleChange} />
                 </label>
                 <label>
                     <p>Password</p>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange}/>
+                    <input type="password" name="password" value={formData.password} onChange={handleChange} />
                 </label>
                 <div>
                     <button type="submit">Submit</button>
