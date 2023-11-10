@@ -32,7 +32,7 @@ npm install
 2. Install Frontend Dependencies:
 ```bash
 cd client
-npm install
+npm install --legacy-peer-deps
 cd ..
 ```
 
@@ -60,7 +60,7 @@ cd client
    In your terminal, run the following command to install the necessary dependencies:
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 3. Start the Application:
 
