@@ -36,6 +36,7 @@ connectToMongo()
         app.use('/changeReview', require('./server/routes/changeReview')(db));
         app.use('/addMicrowave', require('./server/routes/addMicrowave')(db));
         app.use( '/handleGoogleLogin', require('./server/routes/google-login-handler')(db));
+        app.use('/editProfile', require('./server/routes/editProfile')(db));
 
 
         app.get('/', (req, res) => {

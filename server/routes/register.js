@@ -29,7 +29,7 @@ module.exports = function (db) {
 
             await db.collection("userData").insertOne(user);
 
-            // add default settings 
+            // add default settings
             const defaultSettings = {
                 theme: 1,
                 public: false,
