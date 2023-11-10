@@ -6,7 +6,7 @@ import inbox from './envelope.png';
 import logout from './log-out.png';
 import knightro from './knightro.png';
 import './Dropdown.css';
-import Cookies from 'js-cookie'; // Import js-cookie
+import Cookies from 'js-cookie';
 
 function Dropdown() {
   const [open, setOpen] = useState(false);
@@ -45,9 +45,19 @@ function Dropdown() {
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
             <h3>{userName}<br /></h3>
             <ul>
-              <DropdownItem img={user} text={"Profile Settings"} />
+              <li className='dropdownItem'>
+                <Link to="/profile-settings">
+                  <img src={user} alt="Profile Settings" />
+                  Profile Settings
+                </Link>
+              </li>
               <DropdownItem img={edit} text={"My Reviews"} />
-              <DropdownItem img={inbox} text={"Found a Microwave?"} />
+              <li className='dropdownItem'>
+                <Link to="/found-microwave">
+                  <img src={inbox} alt="Found a Microwave?" />
+                  Found a Microwave?
+                </Link>
+              </li>
               <li className='dropdownItem'>
                 <Link to="/login" onClick={handleLogout}>
                   <img src={logout} alt="Logout" />

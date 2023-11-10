@@ -5,13 +5,16 @@ import Dashboard from '../Dashboard/Dashboard';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Dropdown from '../Dropdown/Dropdown';
+import ProfileSettings from '../ProfileSettings/ProfileSettings';
+import ChangePassword from '../ChangePassword/ChangePassword';
+import FoundMicrowave from '../FoundMicrowave/FoundMicrowave';
 
 function App() {
     const [token, setToken] = useState();
 
     return (
         <div className="wrapper">
-            <h1>Application</h1>
+            <h1>Welcome to Knightrowave!</h1>
             <Router>
                 <Switch>
                     <Route exact path="/">
@@ -19,6 +22,18 @@ function App() {
                     </Route>
                     <Route path="/dashboard">
                         <Dashboard/>
+                        <Dropdown/>
+                    </Route>
+                    <Route path="/profile-settings">
+                        <ProfileSettings/>
+                        <Dropdown/>
+                    </Route>
+                    <Route path="/change-password">
+                        <ChangePassword/>
+                        <Dropdown/>
+                    </Route>
+                    <Route path="/found-microwave">
+                        <FoundMicrowave/>
                         <Dropdown/>
                     </Route>
                     <Route path="/login">
