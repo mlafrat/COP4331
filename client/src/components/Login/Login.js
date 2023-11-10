@@ -38,7 +38,7 @@ export default function Login({ setToken }) {
 
                 // Save user data in a cookie
                 Cookies.set('user', JSON.stringify(data.user), { expires: 7 }); // Expires in 7 days
-
+                console.log(data.user);
                 history.push('/dashboard');
             } else {
                 console.log(await response.text());
