@@ -22,7 +22,7 @@ function Reviews() {
       setOpen(false);
     };
     return (
-        <div class="review-wrapper">
+        <div className="review-wrapper">
             <h2>My Reviews</h2>   
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={{md: 3}} columns={{md: 12}}>
