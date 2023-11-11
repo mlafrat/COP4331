@@ -31,6 +31,7 @@ function Dropdown() {
     Cookies.remove('user');
   };
 
+
   // Retrieve user data from cookie
   const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
   const userName = userData ? userData.username : '';
@@ -51,7 +52,12 @@ function Dropdown() {
                   Profile Settings
                 </Link>
               </li>
-              <DropdownItem img={edit} text={"My Reviews"} />
+              <li className='dropdownItem'>
+                <Link to="/my-reviews">
+                    <img src={inbox} alt="My Reviews" />
+                    My Reviews
+                </Link>
+              </li>
               <li className='dropdownItem'>
                 <Link to="/found-microwave">
                   <img src={inbox} alt="Found a Microwave?" />
