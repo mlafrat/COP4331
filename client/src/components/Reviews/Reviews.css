@@ -1,0 +1,40 @@
+.review-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MuiCardContent-root {
+  display: flex;
+  color: black;
+}
+
+.MuiCardActions-root {
+  justify-content: space-between;
+}
+
+.MuiButton-startIcon {
+  color: black;
+}
+
+.MuiButton-startIcon:hover {
+  color: goldenrod;
+}
+
+.MuiButton-text {
+  color: black;
+}
+
+.MuiButton-contained {
+  color: black;
+  background-color: goldenrod;
+}
+
+.MuiButton-contained:hover {
+  color: goldenrod;
+  background-color: black;
+}
+
+.MuiDialogActions-root {
+  justify-content: space-between;
+}
