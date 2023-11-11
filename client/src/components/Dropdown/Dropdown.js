@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import user from './user.png';
-import edit from './edit.png';
 import inbox from './envelope.png';
 import logout from './log-out.png';
 import knightro from './knightro.png';
@@ -31,10 +30,10 @@ function Dropdown() {
     Cookies.remove('user');
   };
 
-
   // Retrieve user data from cookie
   const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
   const userName = userData ? userData.username : '';
+  const loginMethod = userData ? userData.loginMethod : ''; // Added loginMethod check
 
   return (
       <div className="Dropdown">
@@ -46,16 +45,18 @@ function Dropdown() {
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
             <h3>{userName}<br /></h3>
             <ul>
-              <li className='dropdownItem'>
-                <Link to="/profile-settings">
-                  <img src={user} alt="Profile Settings" />
-                  Profile Settings
-                </Link>
-              </li>
+              {loginMethod === 'local' && ( // Conditionally render based on login method
+                  <li className='dropdownItem'>
+                    <Link to="/profile-settings">
+                      <img src={user} alt="Profile Settings" />
+                      Profile Settings
+                    </Link>
+                  </li>
+              )}
               <li className='dropdownItem'>
                 <Link to="/my-reviews">
-                    <img src={inbox} alt="My Reviews" />
-                    My Reviews
+                  <img src={inbox} alt="My Reviews" />
+                  My Reviews
                 </Link>
               </li>
               <li className='dropdownItem'>
@@ -74,16 +75,6 @@ function Dropdown() {
           </div>
         </div>
       </div>
-  );
-}
-
-// Shows properties of each item in their formatting order using a list.
-function DropdownItem(props){
-  return(
-      <li className = 'dropdownItem'>
-        <img src={props.img} alt={props.img}></img>
-        <div> {props.text} </div>
-      </li>
   );
 }
 

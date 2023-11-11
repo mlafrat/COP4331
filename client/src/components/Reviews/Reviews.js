@@ -30,7 +30,7 @@ function Reviews() {
                         <Grid item md={4} key={index}>
                                 <Card>
                                     <CardContent>
-                                        <div class='.MuiCardContent-root'>
+                                        <div className='.MuiCardContent-root'>
                                             <Typography sx={{ fontSize: 14 }} color="text.secondary">
                                                 Building Location
                                             </Typography>

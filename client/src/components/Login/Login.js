@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 export default function Login({ setToken }) {
     const [formData, setFormData] = useState({
         username: '',
-        password: ''
+        password: '',
     });
 
     const history = useHistory();
@@ -15,7 +15,7 @@ export default function Login({ setToken }) {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: value,
         });
     };
 
@@ -27,18 +27,25 @@ export default function Login({ setToken }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(formData),
         });
 
         if (response.ok) {
             const contentType = response.headers.get('content-type');
             if (contentType && contentType.includes('application/json')) {
                 const data = await response.json();
+
+                // login method information
+                const userDataWithLoginMethod = {
+                    ...data.user,
+                    loginMethod: 'local', // 'local' indicates login with username and password
+                };
+
                 setToken(data.token);
 
                 // Save user data in a cookie
-                Cookies.set('user', JSON.stringify(data.user), { expires: 7 }); // Expires in 7 days
-                console.log(data.user);
+                Cookies.set('user', JSON.stringify(userDataWithLoginMethod), { expires: 7 }); // Expires in 7 days
+                console.log(userDataWithLoginMethod);
                 history.push('/dashboard');
             } else {
                 console.log(await response.text());
