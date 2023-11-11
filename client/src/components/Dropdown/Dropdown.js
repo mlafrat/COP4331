@@ -35,11 +35,19 @@ function Dropdown() {
   const userName = userData ? userData.username : '';
   const loginMethod = userData ? userData.loginMethod : ''; // Added loginMethod check
 
+  // Determine the profile image based on the login method
+  let profileImage;
+  if (loginMethod !== 'local' && userData?.googleProfileImage) {
+    profileImage = userData.googleProfileImage;
+  } else {
+    profileImage = knightro; // Default image for other login methods
+  }
+
   return (
       <div className="Dropdown">
         <div className='menu-container' ref={dropRef}>
           <div className='menu-trigger' onClick={() => setOpen(!open)}>
-            <img src={knightro} alt="User Avatar" />
+            <img src={profileImage} alt="User Avatar" />
           </div>
 
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >

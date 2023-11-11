@@ -12,7 +12,8 @@ module.exports = function(db) {
             const user = {
                 user_id: existingUser.user_id,
                 username: existingUser.username,
-                email: existingUser.email
+                email: existingUser.email,
+                googleProfileImage: googleProfile.photos && googleProfile.photos.length > 0 ? googleProfile.photos[0].value : null
             };
 
             // Set user data in a cookie
@@ -28,7 +29,8 @@ module.exports = function(db) {
             const user = {
                 user_id: user_id,
                 username: googleProfile.displayName,
-                email: googleProfile.emails[0].value
+                email: googleProfile.emails[0].value,
+                googleProfileImage: googleProfile.photos && googleProfile.photos.length > 0 ? googleProfile.photos[0].value : null
             };
 
             await db.collection("userData").insertOne(user);
