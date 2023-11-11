@@ -10,10 +10,9 @@ function FoundMicrowave() {
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
     const userId = userData ? userData.user_id : null;
 
-    //   const { creator_user_id, location } = req.body;
-
     const [formData, setFormData] = useState({
-        location: ''
+        location_building: '',
+        location_description: ''
     });
 
     const handleChange = (e) => {
@@ -27,7 +26,7 @@ function FoundMicrowave() {
         event.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3001/addMicrowaveWithLocation/${userId}`, {
+            const response = await fetch(`http://localhost:3001/addMicrowave/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,8 +46,6 @@ function FoundMicrowave() {
         }
     };
 
-
-
     return(
         <div className="microwave-form-wrapper">
             <h1>New Microwave</h1>
@@ -58,8 +55,8 @@ function FoundMicrowave() {
                         id="location-building"
                         label="Building Location"
                         type="text"
-                        name="location"
-                        value={formData.location}
+                        name="location_building"
+                        value={formData.location_building}
                         onChange={handleChange}
                     />
                 </div>
@@ -70,6 +67,10 @@ function FoundMicrowave() {
                         multiline
                         rows={6}
                         placeholder="Please provide a detailed description of where this microwave is located."
+                        type="text"
+                        name="location_description"
+                        value={formData.location_description}
+                        onChange={handleChange}
                     />
                 </div>
                 <div>
