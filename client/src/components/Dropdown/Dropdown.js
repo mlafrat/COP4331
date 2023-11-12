@@ -40,9 +40,14 @@ function Dropdown() {
   // Determine the profile image based on the login method
   let profileImage;
   if (loginMethod !== 'local' && userData?.googleProfileImage) {
+    // Use the Google profile image if available
     profileImage = userData.googleProfileImage;
+  } else if (userData?.profilePicUrl) {
+    // Use the uploaded profile picture if available
+    profileImage = userData.profilePicUrl;
   } else {
-    profileImage = knightro; // Default image for other login methods
+    // Use the default image for other login methods
+    profileImage = knightro;
   }
 
   return (

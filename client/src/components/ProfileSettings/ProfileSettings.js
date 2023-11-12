@@ -12,6 +12,8 @@ function ProfileSettings() {
         username: ''
     });
 
+    const [profilePic, setProfilePic] = useState(null);
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -19,16 +21,26 @@ function ProfileSettings() {
         });
     };
 
+    const handleFileChange = (e) => {
+        // Assuming you want to handle a single file upload
+        const file = e.target.files[0];
+        setProfilePic(file);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const formDataWithProfilePic = new FormData();
+        formDataWithProfilePic.append('email', formData.email);
+        formDataWithProfilePic.append('username', formData.username);
+        if (profilePic) {
+            formDataWithProfilePic.append('profilePic', profilePic);
+        }
 
         try {
             const response = await fetch(`http://localhost:3001/editProfile/${userId}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formDataWithProfilePic,
             });
 
             if (response.ok) {
@@ -66,13 +78,18 @@ function ProfileSettings() {
                     />
                 </label>
                 <div>
-                    <Button type="submit" variant="contained">Update Credentials</Button>
-                </div>
-                <div>
                     <Button component="label" variant="contained">
                         Change Profile Picture
-                        <input type="file" accept="image/*" style={{ display: 'none' }}/>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleFileChange}
+                        />
                     </Button>
+                </div>
+                <div>
+                    <Button type="submit" variant="contained">Update Credentials</Button>
                 </div>
                 <a href="http://localhost:3000/change-password">Change Password</a>
             </form>
