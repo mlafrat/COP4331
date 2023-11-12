@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors'); // Import cors module
 
+const path = require('path');
 const app = express();
 
 app.use(cors()); // Use cors middleware
@@ -28,6 +29,13 @@ connectToMongo()
     .then(database => {
         db = database;
 
+        app.use(function(req, res, next) {
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+            next();
+          });
+
+
         // Define your routes here
         app.use('/login', require('./server/routes/login')(db));
         app.use('/register', require('./server/routes/register')(db));
@@ -37,11 +45,6 @@ connectToMongo()
         app.use('/addMicrowave', require('./server/routes/addMicrowave')(db));
         app.use( '/handleGoogleLogin', require('./server/routes/google-login-handler')(db));
         app.use('/editProfile', require('./server/routes/editProfile')(db));
-
-
-        app.get('/', (req, res) => {
-            res.send('Hi there');
-        });
 
         app.get("/auth/google/callback",
             passport.authenticate("google", {
@@ -53,6 +56,10 @@ connectToMongo()
         app.get("/success", (req, res) => {
             res.send("Success! You have logged in with Google.");
         });
+
+        app.get('*',(req,res) => {
+            res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
+        })
 
         app.listen(3001, () => {
             console.log('Listening on port 3001...');
