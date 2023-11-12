@@ -44,7 +44,18 @@ function ProfileSettings() {
             });
 
             if (response.ok) {
-                alert('Profile updated successfully');
+                const updatedUserData = await response.json();
+
+                setFormData({
+                    email: updatedUserData.email,
+                    username: updatedUserData.username,
+                });
+
+                setProfilePic(updatedUserData.profilePicUrl);
+
+                alert('Profile updated successfully. Please log in again for changes to take effect.');
+                window.location.href = '/';
+
             } else {
                 const errorMessage = await response.text();
                 alert(`Error: ${errorMessage}`);
