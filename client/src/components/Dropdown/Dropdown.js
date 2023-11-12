@@ -4,6 +4,7 @@ import user from './user.png';
 import inbox from './envelope.png';
 import logout from './log-out.png';
 import knightro from './knightro.png';
+import home from './home.png';
 import './Dropdown.css';
 import Cookies from 'js-cookie';
 
@@ -53,6 +54,12 @@ function Dropdown() {
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
             <h3>{userName}<br /></h3>
             <ul>
+              <li className='dropdownItem'>
+                <Link to="/dashboard">
+                  <img src={home} alt="Return to Home" />
+                  Home
+                </Link> 
+              </li>
               {loginMethod === 'local' && ( // Conditionally render based on login method
                   <li className='dropdownItem'>
                     <Link to="/profile-settings">
