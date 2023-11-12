@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import user from './user.png';
 import inbox from './envelope.png';
 import logout from './log-out.png';
@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 function Dropdown() {
   const [open, setOpen] = useState(false);
   const dropRef = useRef();
+  const location = useLocation();
 
   useEffect(() => {
     let handler = (e) => {
@@ -53,12 +54,14 @@ function Dropdown() {
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
             <h3>{userName}<br /></h3>
             <ul>
-              <li className='dropdownItem'>
-                <Link to="/dashboard">
-                  <img src={home} alt="Return to Home" />
-                  Home
-                </Link> 
-              </li>
+              {!(location.pathname === "/dashboard") && (
+                  <li className='dropdownItem'>
+                    <Link to="/dashboard">
+                      <img src={home} alt="Return to Home" />
+                      Home
+                    </Link>
+                  </li>
+              )}
               {loginMethod === 'local' && ( // Conditionally render based on login method
                   <li className='dropdownItem'>
                     <Link to="/profile-settings">
