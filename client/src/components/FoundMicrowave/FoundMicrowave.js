@@ -1,37 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FoundMicrowave.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@mui/material/TextField';
-import Cookies from "js-cookie";
-
+import Cookies from 'js-cookie';
 
 function FoundMicrowave() {
-
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
     const userId = userData ? userData.user_id : null;
 
     const [formData, setFormData] = useState({
         location_building: '',
-        location_description: ''
+        location_description: '',
+        gps_lat: null,
+        gps_long: null,
     });
 
+    const [microwaveImage, setMicrowaveImage] = useState(null);
+
     const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value,
         });
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setMicrowaveImage(file);
+    };
+
+    useEffect(() => {
+        getLocation();
+    }, []);
+
+    const getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setFormData((prevData) => ({
+                        ...prevData,
+                        gps_lat: position.coords.latitude,
+                        gps_long: position.coords.longitude,
+                    }));
+                },
+                (error) => {
+                    console.error('Error getting location:', error);
+                }
+            );
+        } else {
+            console.log('Geolocation is not supported by this browser.');
+        }
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        const formDataWithImage = new FormData();
+        formDataWithImage.append('location_building', formData.location_building);
+        formDataWithImage.append('location_description', formData.location_description);
+        formDataWithImage.append('gps_lat', formData.gps_lat);
+        formDataWithImage.append('gps_long', formData.gps_long);
+        if (microwaveImage) {
+            formDataWithImage.append('microwaveImage', microwaveImage);
+        }
+
         try {
             const response = await fetch(`http://localhost:3001/addMicrowave/${userId}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formDataWithImage,
             });
 
             if (response.ok) {
@@ -46,7 +83,7 @@ function FoundMicrowave() {
         }
     };
 
-    return(
+    return (
         <div className="microwave-form-wrapper">
             <h1>New Microwave</h1>
             <form onSubmit={handleSubmit}>
@@ -74,18 +111,30 @@ function FoundMicrowave() {
                     />
                 </div>
                 <div>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={handleImageChange}
+                    />
                     <Button component="label" variant="contained">
-                            Upload a Photo of the Microwave Here!
-                            <input type="file" accept="image/*" style={{ display: 'none' }}/>
-                        </Button>
-                    </div>
+                        Upload Microwave Image
+                        <input
+                            type="file"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleImageChange}
+                        />
+                    </Button>
+                </div>
                 <div>
-                    <Button type="submit" variant="contained">Submit For Review</Button>
+                    <Button type="submit" variant="contained">
+                        Submit For Review
+                    </Button>
                 </div>
             </form>
         </div>
-      );
-
+    );
 }
 
 export default FoundMicrowave;
