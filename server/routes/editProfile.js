@@ -6,7 +6,7 @@ const { Storage } = require('@google-cloud/storage');
 
 // Initialize Google Cloud Storage without a service account key
 const storage = new Storage({
-    keyFilename: 'knightrowave-ab29af5b421a.json', // Replace with the path to your service account key file
+    keyFilename: 'knightrowave-ab29af5b421a.json',
 });
 const bucket = storage.bucket('knightrowave-profile-pics');
 
