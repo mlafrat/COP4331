@@ -62,7 +62,7 @@ export default function Login({ setToken }) {
   };
 
   return (
-    <Container component="main" maxWidth="md">
+    <Container component="main" maxWidth="sm">
       <Box
         sx={{
           marginTop: 8,
