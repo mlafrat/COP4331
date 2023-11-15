@@ -107,19 +107,23 @@ export default function Login({ setToken }) {
           >
             Sign In
           </Button>
-          <Button fullWidth variant="outlined">
+          <Button
+            fullWidth
+            variant="outlined"
+            href="http://localhost:3001/auth/google/callback"
+          >
             Sign In With Google
           </Button>
           <Grid Container>
             <Grid item xs>
               <Link href="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {"Don't have an account? Register here"}
               </Link>
             </Grid>
           </Grid>
         </Box>
       </Box>
-      <div className="login-wrapper">
+      {/* <div className="login-wrapper">
         <h1>Please Log In</h1>
         <form onSubmit={handleSubmit}>
           <label>
@@ -152,7 +156,7 @@ export default function Login({ setToken }) {
         <div className="register-button">
           <button onClick={() => history.push("/register")}>Register</button>
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 }
