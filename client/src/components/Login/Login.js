@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
 import Cookies from "js-cookie";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Link, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -107,6 +107,16 @@ export default function Login({ setToken }) {
           >
             Sign In
           </Button>
+          <Button fullWidth variant="outlined">
+            Sign In With Google
+          </Button>
+          <Grid Container>
+            <Grid item xs>
+              <Link href="/register" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
       </Box>
       <div className="login-wrapper">
