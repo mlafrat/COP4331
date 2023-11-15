@@ -110,6 +110,7 @@ export default function Login({ setToken }) {
           <Button
             fullWidth
             variant="outlined"
+            sx={{ mt: 0, mb: 1 }}
             href="http://localhost:3001/auth/google/callback"
           >
             Sign In With Google
