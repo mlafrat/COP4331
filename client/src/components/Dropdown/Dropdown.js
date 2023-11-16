@@ -57,7 +57,7 @@ function Dropdown() {
             <img src={profileImage} alt="User Avatar" />
           </div>
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
-            <h3>{userName}<br /></h3>
+            <h3>Welcome, {userName}!<br /></h3>
             <ul>
               {!(location.pathname === "/dashboard") && (
                   <li className='dropdownItem'>
