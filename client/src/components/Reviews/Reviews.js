@@ -71,7 +71,7 @@ function Reviews() {
                                     <Button variant="contained" startIcon={<StarRateIcon />} onClick={handleClickOpen}>
                                         {`${review.rating} Stars - reviewer's rating`}
                                     </Button>
-                                    <EditReview open={open} onClose={handleClose} />
+                                    <EditReview open={open} microwaveId = {review.microwave_id} onClose={handleClose} />
                                 </CardActions>
                             </Card>
                         </Grid>

@@ -3,54 +3,29 @@ const router = express.Router();
 
 module.exports = function(db) {
     // Define a route for updating reviews
-    router.post("/", async (req, res) => {
-        const { review, is_photo_attached, microwave_id, user_id, is_rated, rating } = req.body;
-        //to-do: picture
+    router.put("/:user_id", async (req, res) => {
+        const user_id = parseInt(req.params.user_id);
+        const { review, rating, microwave_id } = req.body;
 
         try {
             const existingMicrowave = await db.collection("microwaveLocations").findOne({ microwave_id });
             const existingReview = await db.collection("userReviews").findOne({ user_id, microwave_id });
 
-            //Tragically long photo logic here
-            //Needs to search by microwaveid, creator_user_id = userid
-            const existingPhoto = await db.collection("microwavePhotos").findOne({ user_id, microwave_id });
+            
+            console.log("user id:", user_id); 
+            console.log("review:", review); 
+            console.log("rating:", rating); 
+            console.log("microwave id:", microwave_id); 
+            console.log("existing review:", existingReview); 
 
-            if(is_photo_attached && existingPhoto) {
-                //change picture
-                //to-do: check if it's the same picture
-                await db.collection("microwavePhotos").updateOne(
-                    { user_id, microwave_id },
-                    {
-                        $set: {  }, //to-do: change location
-                    }                    
-                );  
-            }
-            else if(is_photo_attached) {
-                //add new picture
-                const lastPhoto = await db.collection("microwavePhotos").find().sort({ photo_id: -1 }).limit(1).toArray();
-                const lastPhotoId = lastPhoto.length > 0 ? lastPhoto[0].photo_id : 0;
 
-                const newPhoto = {
-                    creator_user_id: user_id, 
-                    microwave_id: microwave_id,
-                    photo_id: lastPhotoId + 1   
-                    //to-do: file location/name of photo generation               
-                };
-
-                await db.collection("microwavePhotos").insertOne(newPhoto);
-            }
-            else if(existingPhoto) {
-                //to-do: delete picture
-                await db.collection("microwavePhotos").updateOne(
-                    { user_id, microwave_id },
-                    {
-                        $set: { location: "" }, //to-do: change location
-                    }                    
-                );  
-            }
-
-            //Rating logic here
-
+            /*
+            console.log('passed rating:')
+            console.log(rating)
+            console.log('existing rating:')
+            console.log(existingReview.rating)
+*/
+/*
             if(rating != existingReview.rating) {
                 //update rating
                 if(is_rated){
@@ -72,13 +47,14 @@ module.exports = function(db) {
                     );  
                 }
             }
+*/
 
             //update review
             await db.collection("userReviews").updateOne(
                 { microwave_id, user_id },
                 {
-                    $set: { review: review, is_photo_attached: is_photo_attached, microwave_id: microwave_id,
-                            user_id: user_id, is_rated: is_rated, rating: rating },
+                    $set: { review: review, microwave_id: microwave_id,
+                            user_id: user_id, rating: rating },
                 }                    
             );  
 
