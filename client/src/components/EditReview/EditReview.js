@@ -1,22 +1,27 @@
 import './EditReview.css'
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import Rating from '../Rating/Rating';
+//import Rating from '../Rating/Rating';
 import { Dialog, DialogActions, DialogContent, DialogTitle, DialogContentText } from '@mui/material';
 import Cookies from 'js-cookie';
+
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import MicrowaveIcon from '@mui/icons-material/Microwave';
+import TextField from '@mui/material/TextField';
 
 
 function EditReview(props) {
 
-    const microwaveId = props.microwaveId;
+
+    const [value, setValue] = React.useState(2);
 
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
     const user_id = userData ? userData.user_id : null;
 
     const [formData, setFormData] = useState({
-        review: '',
-        rating: '',
-        microwave_id: ''
+        review: ''
     });
 
 
@@ -30,24 +35,16 @@ function EditReview(props) {
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-/*
-        const reviewData = new FormData();
-        reviewData.append('review', formData.review);
-        reviewData.append('rating', formData.rating);
-        reviewData.append('microwave_id', props.microwaveId);
-*/
 
         const updatedReview = {
             review: formData.review, 
-            rating: formData.rating,
+            rating: value,
             microwave_id: props.microwaveId
         };
 
 
         try {
-            console.log("on submit, microwave id is:", props.microwaveId); 
-            //console.log("our form is: ", JSON.stringify(formData))
-            console.log("our form is: ", JSON.stringify(updatedReview))
+            console.log("our updated review is: ", JSON.stringify(updatedReview))
 
             const response = await fetch(`http://localhost:3001/changeReview/${user_id}`, {
                 method: 'PUT',
@@ -55,12 +52,10 @@ function EditReview(props) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updatedReview),
-                //body: JSON.stringify(formData),
             });
 
-
             if (response.ok) {
-                alert('Review updated successfully');
+                window.location.href = '/my-reviews';
 
             } else {
                 const errorMessage = await response.text();
@@ -84,28 +79,38 @@ function EditReview(props) {
             <DialogTitle>Edit Review</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Testing, here is the microwave id: 
-                    {`${microwaveId}`}
-                </DialogContentText>
-                <DialogContentText>
                     If you'd like to update your review, you can do so here!
-                    <input
+                </DialogContentText>    
+                    <Box
+                    sx={{
+                        '& > legend': { mt: 2 },
+                    }}
+                    >
+                    <div>
+                    <Typography component="legend">1 Star = Terrible, 5 Stars = Knightrolicious</Typography>
+                    <Rating
+                        name="star-rating"
+                        value={value}
+                        onChange={(event, newValue) => {
+                        setValue(newValue);
+                        }}
+                        icon={<MicrowaveIcon fontSize="inherit" />}
+                        emptyIcon={<MicrowaveIcon fontSize="inherit" />}
+                    />
+                    </div>
+                    <TextField
+                        id="my-review"
+                        label="Update Review"
+                        multiline
+                        fullWidth
+                        rows={4}
+                        placeholder="Update your review here (maybe we have this filled in already?"
                         type="text"
                         name="review"
                         value={formData.review}
                         onChange={handleChange}
                     />
-                </DialogContentText>
-                <DialogContentText>
-                    Just for testing
-                    <input
-                        type="text"
-                        name="rating"
-                        value={formData.rating}
-                        onChange={handleChange}
-                    />
-                </DialogContentText>                
-                <Rating/>
+                    </Box>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
