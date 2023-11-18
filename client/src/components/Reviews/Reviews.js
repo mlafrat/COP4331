@@ -20,10 +20,14 @@ function Reviews() {
         try {
             const response = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwaveId}`);
             const data = await response.json();
-            setMicrowaveNames((prevNames) => ({
-                ...prevNames,
-                [microwaveId]: data.microwave_name,
-            }));
+            if (data && data.microwave_name) {
+                setMicrowaveNames((prevNames) => ({
+                    ...prevNames,
+                    [microwaveId]: data.microwave_name,
+                }));
+            } else {
+                console.error(`No microwave name found for microwave ID ${microwaveId}`);
+            }
         } catch (error) {
             console.error('Error fetching microwave name:', error);
         }
