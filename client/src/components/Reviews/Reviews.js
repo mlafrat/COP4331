@@ -49,18 +49,16 @@ function Reviews() {
     };
 
     const handleDelete = async (reviewId, index) => {
-        const confirmation = window.confirm('Are you sure you want to delete this review?');
-        if (confirmation) {
-            try {
-                await fetch(`http://localhost:3001/deleteReview?review_id=${reviewId}`, {
-                    method: 'DELETE',
-                });
-                const updatedReviews = [...reviews];
-                updatedReviews.splice(index, 1);
-                setReviews(updatedReviews);
-            } catch (error) {
-                console.error('Error deleting review:', error);
-            }
+        try {
+            // Fetch call to delete a review by its ID
+            await fetch(`http://localhost:3001/deleteReview?review_id=${reviewId}`, {
+                method: 'DELETE',
+            });
+            const updatedReviews = [...reviews];
+            updatedReviews.splice(index, 1);
+            setReviews(updatedReviews);
+        } catch (error) {
+            console.error('Error deleting review:', error);
         }
     };
 
