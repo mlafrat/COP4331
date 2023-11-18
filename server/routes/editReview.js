@@ -9,7 +9,7 @@ module.exports = function(db) {
 
         try {
             const existingReview = await db.collection("userReviews").findOne({ review_id: reviewId });
-
+            console.log(existingReview.review_id);
             if (!existingReview) {
                 return res.status(404).json({ message: 'Review not found' });
             }
@@ -19,7 +19,7 @@ module.exports = function(db) {
                 { review_id: reviewId },
                 { $set: updatedData }
             );
-
+            res.setHeader('Content-Type', 'application/json');
             res.status(200).json({ message: 'Review updated successfully' });
         } catch (error) {
             console.error("Error:", error);

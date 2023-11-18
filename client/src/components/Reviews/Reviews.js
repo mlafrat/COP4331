@@ -1,36 +1,96 @@
-import './Reviews.css'
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import StarRateIcon from '@mui/icons-material/StarRate';
-import EditReview from '../EditReview/EditReview';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import StarRating from './StarRating';
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
-    const [open, setOpen] = useState(false);
-    const [userId, setUserId] = useState(null); // State to store user_id from cookie
+    const [editedRating, setEditedRating] = useState(0);
+    const [microwaveNames, setMicrowaveNames] = useState({});
+
+    const fetchMicrowaveName = async (microwaveId) => {
+        try {
+            const response = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwaveId}`);
+            const data = await response.json();
+            if (data && data.microwave_name) {
+                setMicrowaveNames((prevNames) => ({
+                    ...prevNames,
+                    [microwaveId]: data.microwave_name,
+                }));
+            } else {
+                console.error(`No microwave name found for microwave ID ${microwaveId}`);
+            }
+        } catch (error) {
+            console.error('Error fetching microwave name:', error);
+        }
+    };
+
+    const initializeReviews = (reviewData) => {
+        const reviewsWithFlags = reviewData.map((review) => ({
+            ...review, isEditing: false,
+        }));
+        setReviews(reviewsWithFlags);
+    };
+
+    const handleEdit = (index) => {
+        const updatedReviews = [...reviews];
+        updatedReviews[index].isEditing = true;
+        setEditedRating(updatedReviews[index].rating || 0); // Set edited rating to the current rating
+        setReviews(updatedReviews);
+    };
+
+    const handleDelete = async (reviewId, index) => {
+        try {
+            // Fetch call to delete a review by its ID
+            await fetch(`http://localhost:3001/deleteReview?review_id=${reviewId}`, {
+                method: 'DELETE',
+            });
+            const updatedReviews = [...reviews];
+            updatedReviews.splice(index, 1);
+            setReviews(updatedReviews);
+        } catch (error) {
+            console.error('Error deleting review:', error);
+        }
+    };
+
+    const handleSave = async (reviewId, index) => {
+        try {
+            const updatedReviewText = reviews[index].review;
+
+            await fetch(`http://localhost:3001/editReview?review_id=${reviewId}`, {
+                method: 'PUT', headers: {
+                    'Content-Type': 'application/json',
+                }, body: JSON.stringify({review: updatedReviewText, rating: editedRating}),
+            });
+            const updatedReviews = [...reviews];
+            updatedReviews[index].isEditing = false;
+            updatedReviews[index].review = updatedReviewText;
+            updatedReviews[index].rating = editedRating; 
+            setReviews(updatedReviews);
+        } catch (error) {
+            console.error('Error updating review:', error);
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
-            // Retrieve user_id from cookie
             const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
             const extractedUserId = userData ? userData.user_id : null;
-            console.log(extractedUserId);
 
             if (extractedUserId) {
-                setUserId(extractedUserId);
-
                 try {
+                    // Fetch call to get reviews by user ID
                     const response = await fetch(`http://localhost:3001/viewReviews?user_id=${extractedUserId}`);
                     const data = await response.json();
-                    setReviews(data.reviews);
-                    console.log(data.reviews);
+                    initializeReviews(data.reviews);
                 } catch (error) {
                     console.error('Error fetching reviews:', error);
                 }
@@ -40,13 +100,17 @@ function Reviews() {
         fetchData();
     }, []);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+    useEffect(() => {
+        // Fetch microwave name for each review's microwave_id
+        reviews.forEach((review) => {
+            if (!microwaveNames[review.microwave_id]) {
+                fetchMicrowaveName(review.microwave_id)
+                    .catch((error) => {
+                        console.error(`Error fetching microwave name for microwave_id ${review.microwave_id}:`, error);
+                    });
+            }
+        });
+    }, [reviews, microwaveNames]);
 
     return (
         <div className="review-wrapper">
@@ -57,21 +121,50 @@ function Reviews() {
                         <Grid item key={index}>
                             <Card>
                                 <CardContent>
-                                    <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                                        Building Location
-                                    </Typography>
-                                    <Typography variant="h5" component="div">
-                                        {review.microwave_location}
-                                    </Typography>
-                                    <Typography variant="body2">
-                                        {review.review}
-                                    </Typography>
+                                    <div className="subtitle">
+                                        Microwave Location: {microwaveNames[review.microwave_id]}
+                                    </div>
+                                    <div className="review-text">
+                                        {review.isEditing ? (
+                                            <>
+                                                <textarea
+                                                    value={review.review}
+                                                    onChange={(e) => {
+                                                        const updatedReviews = [...reviews];
+                                                        updatedReviews[index].review = e.target.value;
+                                                        setReviews(updatedReviews);
+                                                    }}
+                                                    rows={4}
+                                                    cols={40}
+                                                />
+                                                <div>
+                                                    <StarRating
+                                                        rating={editedRating || review.rating}
+                                                        onRate={(newRating) => setEditedRating(newRating)}
+                                                    />
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <p>{review.review}</p>
+                                        )}
+                                    </div>
                                 </CardContent>
                                 <CardActions>
-                                    <Button variant="contained" startIcon={<StarRateIcon />} onClick={handleClickOpen}>
-                                        {`${review.rating} Stars - reviewer's rating`}
+                                    <Button variant="contained" startIcon={<StarRateIcon />}>
+                                        {`${review.rating || 0} Stars - reviewer's rating`}
                                     </Button>
-                                    <EditReview open={open} onClose={handleClose} />
+                                    {review.isEditing ? (
+                                        <Button onClick={() => handleSave(review.review_id, index)}>Save</Button>
+                                    ) : (
+                                        <>
+                                            <Button startIcon={<EditIcon />} onClick={() => handleEdit(index)}>
+                                                Edit
+                                            </Button>
+                                            <Button startIcon={<DeleteIcon />} onClick={() => handleDelete(review.review_id, index)}>
+                                                Delete
+                                            </Button>
+                                        </>
+                                    )}
                                 </CardActions>
                             </Card>
                         </Grid>
@@ -83,3 +176,4 @@ function Reviews() {
 }
 
 export default Reviews;
+

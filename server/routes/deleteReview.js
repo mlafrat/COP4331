@@ -15,7 +15,7 @@ module.exports = function(db) {
 
             // Delete the review based on the review_id
             await db.collection("userReviews").deleteOne({ review_id: reviewId });
-
+            res.setHeader('Content-Type', 'application/json');
             res.status(200).json({ message: 'Review deleted successfully' });
         } catch (error) {
             console.error("Error:", error);
