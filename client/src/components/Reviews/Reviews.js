@@ -14,6 +14,20 @@ import StarRating from './StarRating'; // Assuming StarRating is in a separate f
 function Reviews() {
     const [reviews, setReviews] = useState([]);
     const [editedRating, setEditedRating] = useState(0);
+    const [microwaveNames, setMicrowaveNames] = useState({});
+
+    const fetchMicrowaveName = async (microwaveId) => {
+        try {
+            const response = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwaveId}`);
+            const data = await response.json();
+            setMicrowaveNames((prevNames) => ({
+                ...prevNames,
+                [microwaveId]: data.microwave_name,
+            }));
+        } catch (error) {
+            console.error('Error fetching microwave name:', error);
+        }
+    };
 
     const initializeReviews = (reviewData) => {
         const reviewsWithFlags = reviewData.map((review) => ({
@@ -82,6 +96,18 @@ function Reviews() {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        // Fetch microwave name for each review's microwave_id
+        reviews.forEach((review) => {
+            if (!microwaveNames[review.microwave_id]) {
+                fetchMicrowaveName(review.microwave_id)
+                    .catch((error) => {
+                        console.error(`Error fetching microwave name for microwave_id ${review.microwave_id}:`, error);
+                    });
+            }
+        });
+    }, [reviews, microwaveNames]);
+
     return (
         <div className="review-wrapper">
             <h2>My Reviews</h2>
@@ -92,7 +118,7 @@ function Reviews() {
                             <Card>
                                 <CardContent>
                                     <div className="subtitle">
-                                        Microwave Location: {review.microwave_id}
+                                        Microwave Location: {microwaveNames[review.microwave_id]}
                                     </div>
                                     <div className="review-text">
                                         {review.isEditing ? (
