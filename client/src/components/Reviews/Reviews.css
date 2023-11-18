@@ -6,16 +6,16 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.MuiButton-contained {
+.MuiCardActions-root .MuiButton-contained {
   color: black;
   background-color: goldenrod;
 }
 
-.MuiButton-contained:hover {
+.MuiCardActions-root .MuiButton-contained:hover {
   color: goldenrod;
   background-color: black;
 }
 
-.MuiButton-root {
+.MuiCardActions-root .MuiButton-root {
   color: black;
 }
