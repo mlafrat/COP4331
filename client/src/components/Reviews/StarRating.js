@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import StarIcon from '@mui/icons-material/Star';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import MicrowaveIcon from '@mui/icons-material/Microwave';
+import MicrowaveOutlinedIcon from '@mui/icons-material/MicrowaveOutlined';
+
 
 function StarRating({ onRate, rating }) {
     const [hoverRating, setHoverRating] = useState(0);
@@ -23,9 +24,9 @@ function StarRating({ onRate, rating }) {
                         onMouseEnter={() => handleMouseEnter(star)}
                         onMouseLeave={handleMouseLeave}
                         onClick={() => onRate(star)}
-                        style={{ cursor: 'pointer' }}
+                        style={{ cursor: 'pointer', color: 'goldenrod',}}
                     >
-            {fill ? <StarIcon /> : <StarOutlineIcon />}
+            {fill ? <MicrowaveIcon /> : <MicrowaveOutlinedIcon />}
           </span>
                 );
             })}
