@@ -10,6 +10,7 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarRating from './StarRating';
+import './Reviews.css';
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
@@ -150,17 +151,17 @@ function Reviews() {
                                     </div>
                                 </CardContent>
                                 <CardActions>
-                                    <Button variant="contained" startIcon={<StarRateIcon />}>
-                                        {`${review.rating || 0} Stars - reviewer's rating`}
+                                    <Button startIcon={<StarRateIcon />}>
+                                        {`${review.rating || 0} Stars`}
                                     </Button>
                                     {review.isEditing ? (
-                                        <Button onClick={() => handleSave(review.review_id, index)}>Save</Button>
+                                        <Button variant="contained" onClick={() => handleSave(review.review_id, index)}>Save</Button>
                                     ) : (
                                         <>
-                                            <Button startIcon={<EditIcon />} onClick={() => handleEdit(index)}>
+                                            <Button variant="contained" startIcon={<EditIcon />} onClick={() => handleEdit(index)}>
                                                 Edit
                                             </Button>
-                                            <Button startIcon={<DeleteIcon />} onClick={() => handleDelete(review.review_id, index)}>
+                                            <Button variant="contained" startIcon={<DeleteIcon />} onClick={() => handleDelete(review.review_id, index)}>
                                                 Delete
                                             </Button>
                                         </>
