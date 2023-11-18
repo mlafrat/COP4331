@@ -1,7 +1,7 @@
 import './EditReview.css'
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-//import Rating from '../Rating/Rating';
+//import Rating from '../Rating/Rating'; //temporarily combined with this file (for testing purposes)
 import { Dialog, DialogActions, DialogContent, DialogTitle, DialogContentText } from '@mui/material';
 import Cookies from 'js-cookie';
 
@@ -14,8 +14,13 @@ import TextField from '@mui/material/TextField';
 
 function EditReview(props) {
 
+    console.log("This is the microwave we're getting: ", props.thisMicrowave)
+    const thisReview = props.thisMicrowave.review
+    const thisRating = props.thisMicrowave.rating
+    console.log("thisReview", thisReview)
+    console.log("thisRating", thisRating)
 
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(thisRating);
 
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
     const user_id = userData ? userData.user_id : null;
@@ -104,7 +109,7 @@ function EditReview(props) {
                         multiline
                         fullWidth
                         rows={4}
-                        placeholder="Update your review here (maybe we have this filled in already?"
+                        placeholder={thisReview}
                         type="text"
                         name="review"
                         value={formData.review}

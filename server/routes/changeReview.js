@@ -10,7 +10,6 @@ module.exports = function(db) {
         try {
             const existingMicrowave = await db.collection("microwaveLocations").findOne({ microwave_id });
             const existingReview = await db.collection("userReviews").findOne({ user_id, microwave_id });
-
             
             console.log("user id:", user_id); 
             console.log("review:", review); 
@@ -19,35 +18,16 @@ module.exports = function(db) {
             console.log("existing review:", existingReview); 
 
 
-            /*
-            console.log('passed rating:')
-            console.log(rating)
-            console.log('existing rating:')
-            console.log(existingReview.rating)
-*/
-/*
             if(rating != existingReview.rating) {
-                //update rating
-                if(is_rated){
-                    await db.collection("microwaveLocations").updateOne(
-                        { microwave_id },
-                        {
-                            $set: { total_rating: existingMicrowave.total_rating + rating - existingReview.rating },
-                        }                    
-                    );  
-                }
-                //delete rating
-                else {
-                    await db.collection("microwaveLocations").updateOne(
-                        { microwave_id },
-                        {
-                            $set: { total_rating: existingMicrowave.total_rating - existingReview.rating,
-                                    users_rated: existingMicrowave.users_rated - 1},
-                        }                    
-                    );  
-                }
+
+                await db.collection("microwaveLocations").updateOne(
+                    { microwave_id },
+                    {
+                        $set: { total_rating: existingMicrowave.total_rating + rating - existingReview.rating },
+                    }                    
+                );  
+
             }
-*/
 
             //update review
             await db.collection("userReviews").updateOne(
