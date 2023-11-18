@@ -19,7 +19,7 @@ module.exports = function(db) {
                 { review_id: reviewId },
                 { $set: updatedData }
             );
-
+            res.setHeader('Content-Type', 'application/json');
             res.status(200).json({ message: 'Review updated successfully' });
         } catch (error) {
             console.error("Error:", error);

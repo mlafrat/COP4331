@@ -47,6 +47,7 @@ connectToMongo()
         app.use('/viewReviews', require('./server/routes/viewReviews')(db));
         app.use('/editReview', require('./server/routes/editReview')(db));
         app.use('/deleteReview', require('./server/routes/deleteReview')(db));
+        app.use('/getReview', require('./server/routes/getReview')(db));
 
         app.get("/auth/google/callback",
             passport.authenticate("google", {
