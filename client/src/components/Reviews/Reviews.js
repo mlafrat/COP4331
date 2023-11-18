@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import StarRating from './StarRating'; // Assuming StarRating is in a separate file
+import StarRating from './StarRating';
 
 function Reviews() {
     const [reviews, setReviews] = useState([]);
@@ -64,7 +64,7 @@ function Reviews() {
     const handleSave = async (reviewId, index) => {
         try {
             const updatedReviewText = reviews[index].review;
-            // Assuming the API endpoint for updating review text and rating is '/editReview'
+
             await fetch(`http://localhost:3001/editReview?review_id=${reviewId}`, {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ function Reviews() {
             const updatedReviews = [...reviews];
             updatedReviews[index].isEditing = false;
             updatedReviews[index].review = updatedReviewText;
-            updatedReviews[index].rating = editedRating; // Update the rating
+            updatedReviews[index].rating = editedRating; 
             setReviews(updatedReviews);
         } catch (error) {
             console.error('Error updating review:', error);
