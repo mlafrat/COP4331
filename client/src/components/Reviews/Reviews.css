@@ -2,39 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.MuiCardContent-root {
-  display: flex;
-  color: black;
-}
-
-.MuiCardActions-root {
-  justify-content: space-between;
-}
-
-.MuiButton-startIcon {
-  color: black;
-}
-
-.MuiButton-startIcon:hover {
-  color: goldenrod;
-}
-
-.MuiButton-text {
-  color: black;
-}
-
-.MuiButton-contained {
+.MuiCardActions-root .MuiButton-contained {
   color: black;
   background-color: goldenrod;
 }
 
-.MuiButton-contained:hover {
+.MuiCardActions-root .MuiButton-contained:hover {
   color: goldenrod;
   background-color: black;
 }
 
-.MuiDialogActions-root {
-  justify-content: space-between;
+.MuiCardActions-root .MuiButton-root {
+  color: black;
 }
