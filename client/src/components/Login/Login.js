@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
 import Cookies from "js-cookie";
-import { Box, Container, Link, Grid } from "@mui/material";
+import { Box, Container, Link, Grid, Avatar } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
@@ -69,12 +70,14 @@ export default function Login({ setToken }) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          textAlign: "center",
         }}
       >
+        <Avatar sx={{ m: 1 }}></Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
         <Box component="form" onSubmit={handleSubmit}>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
           <TextField
             margin="normal"
             required
