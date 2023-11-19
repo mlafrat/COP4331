@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./Register.css";
-import { Box, Container, Link, Grid } from "@mui/material";
+import { Box, Container, Link, Grid, Avatar } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -54,10 +54,11 @@ export default function SignUp() {
           alignItems: "center",
         }}
       >
+        <Avatar></Avatar>
+        <Typography component="h1" variant="h5">
+          Register
+        </Typography>
         <Box component="form" onSubmit={handleSubmit}>
-          <Typography component="h1" variant="h5">
-            Register
-          </Typography>
           <TextField
             margin="normal"
             required
