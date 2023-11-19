@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import user from './user.png';
-import inbox from './envelope.png';
-import logout from './log-out.png';
+import star from './star.png'
+import microwave from './microwave.png';
+import logout from './logout.png';
 import knightro from './knightro.png';
 import home from './home.png';
 import './Dropdown.css';
@@ -57,7 +58,7 @@ function Dropdown() {
             <img src={profileImage} alt="User Avatar" />
           </div>
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
-            <h3>{userName}<br /></h3>
+            <h3>Welcome, {userName}!<br /></h3>
             <ul>
               {!(location.pathname === "/dashboard") && (
                   <li className='dropdownItem'>
@@ -77,13 +78,13 @@ function Dropdown() {
               )}
               <li className='dropdownItem'>
                 <Link to="/my-reviews">
-                  <img src={inbox} alt="My Reviews" />
+                  <img src={star} alt="My Reviews" />
                   My Reviews
                 </Link>
               </li>
               <li className='dropdownItem'>
                 <Link to="/found-microwave">
-                  <img src={inbox} alt="Found a Microwave?" />
+                  <img src={microwave} alt="Found a Microwave?" />
                   Found a Microwave?
                 </Link>
               </li>

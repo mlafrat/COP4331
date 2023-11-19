@@ -21,7 +21,9 @@ function App() {
 
   return (
     <div className="wrapper">
-      <h1>Welcome to Knightrowave!</h1>
+      <div className="rectangle">
+        <h1 style={{ color: "white" }}>Knightrowave</h1>
+      </div>
       <Router>
         <Switch>
           <Route exact path="/">

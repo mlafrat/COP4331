@@ -9,7 +9,8 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--primary-bg);
@@ -23,13 +24,9 @@ ul {
   list-style: none;
 }
 
-a {
-  text-decoration: none;
-}
-
 .menu-trigger img {
   position: absolute;
-  top: 20px;
+  top: 24px;
   right: 20px;
   height: 60px;
   width: 60px;
@@ -100,12 +97,14 @@ h3 {
   color: rgb(0, 0, 0);
   font-weight: 700;
   cursor: pointer;
+  transition: var(--speed) ease;
 }
 
 /* hover over list icon*/
 .dropdown-menu ul li:hover img {
   opacity: 1;
   cursor: pointer;
+  transition: var(--speed) ease;
 }
 
 /* dropdown container */
@@ -119,12 +118,56 @@ h3 {
   max-width: 30px;
   margin-right: 10px;
   opacity: 0.5;
-  transition: var(--speed);
+  transition: var(--speed) ease;
 }
 
 /*dropdown text*/
 .dropdownItem txt {
   max-width: 100px;
   margin-left: 10px;
-  transition: var(--speed);
+  opacity: 0.5;
+  transition: var(--speed) ease;
+}
+
+/*visited link styling*/
+a:visited {
+  text-decoration: none;
+  color: darkslategrey;
+}
+
+/* link styling to show line underneath*/
+a {
+  background-image: linear-gradient(to right, black, black 50%, #000 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+a:before {
+  content: "";
+  background: black;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+  color: black;
+  font-weight: 600;
+  background-position: 0;
+  transition: 0.4s;
+  transition: var(--speed) ease;
+}
+
+a:hover::before {
+  width: 100%;
 }
