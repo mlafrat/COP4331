@@ -1,3 +1,11 @@
 .wrapper {
-    padding: 20px;
+  padding-top: 0px;
+  color: black;
+  text-align: left;
+}
+
+.rectangle {
+  height: 65px;
+  width: 100%;
+  background: black;
 }
