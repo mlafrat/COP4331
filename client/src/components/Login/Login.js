@@ -118,7 +118,7 @@ export default function Login({ setToken }) {
           >
             Sign In With Google
           </Button>
-          <Grid Container>
+          <Grid container>
             <Grid item xs>
               <Link href="/register" variant="body2">
                 {"Don't have an account? Register here"}

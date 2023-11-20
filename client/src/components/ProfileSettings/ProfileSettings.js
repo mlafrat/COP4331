@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ProfileSettings.css";
 import Button from "@material-ui/core/Button";
 import Cookies from "js-cookie";
-import { Container, Box, TextField, Grid, Stack } from "@mui/material";
+import { Container, Box, TextField, Stack } from "@mui/material";
 
 function ProfileSettings() {
   const userData = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
@@ -14,6 +14,7 @@ function ProfileSettings() {
   });
 
   const [profilePic, setProfilePic] = useState(null);
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -23,9 +24,9 @@ function ProfileSettings() {
   };
 
   const handleFileChange = (e) => {
-    // Assuming you want to handle a single file upload
     const file = e.target.files[0];
     setProfilePic(file);
+    setSelectedFileName(file.name); // Set the selected file name
   };
 
   const handleSubmit = async (event) => {
@@ -40,11 +41,11 @@ function ProfileSettings() {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/editProfile/${userId}`,
-        {
-          method: "PUT",
-          body: formDataWithProfilePic,
-        }
+          `http://localhost:3001/editProfile/${userId}`,
+          {
+            method: "PUT",
+            body: formDataWithProfilePic,
+          }
       );
 
       if (response.ok) {
@@ -58,7 +59,7 @@ function ProfileSettings() {
         setProfilePic(updatedUserData.profilePicUrl);
 
         alert(
-          "Profile updated successfully. Please log in again for changes to take effect."
+            "Profile updated successfully. Please log in again for changes to take effect."
         );
         window.location.href = "/";
       } else {
@@ -72,75 +73,77 @@ function ProfileSettings() {
   };
 
   return (
-    <Container component="main" maxWidth="md">
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          marginTop: 4,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <h1>Edit Profile</h1>
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          type="text"
-          id="email"
-          label="Email"
-          name="email"
-          autoComplete="email"
-          value={formData.email}
-          onChange={handleChange}
-          autoFocus
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="username"
-          label="Username"
-          name="username"
-          autoComplete="email"
-          value={formData.username}
-          onChange={handleChange}
-          autoFocus
-        />
-        <Box>
-          <Stack
-            sx={{ pt: 2 }}
-            direction="row"
-            spacing={4}
-            justifyContent="center"
-          >
-            <Button component="label" variant="contained" margin="normal">
-              Change Profile Picture
-              <input
-                type="file"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-              />
-            </Button>
-
-            <Button
-              href="http://localhost:3000/change-password"
-              variant="contained"
+      <Container component="main" maxWidth="md">
+        <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{
+              marginTop: 4,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+        >
+          <h1>Edit Profile</h1>
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              type="text"
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              value={formData.email}
+              onChange={handleChange}
+              autoFocus
+          />
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="email"
+              value={formData.username}
+              onChange={handleChange}
+          />
+          <Box>
+            <Stack
+                sx={{ pt: 2 }}
+                direction="row"
+                spacing={4}
+                justifyContent="center"
             >
-              Change Password
-            </Button>
+              <Button component="label" variant="contained" margin="normal">
+                Change Profile Picture
+                <input
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                />
+              </Button>
 
-            <Button type="submit" variant="contained" color="secondary">
-              Update Credentials
-            </Button>
-          </Stack>
+              {/* Display selected file name */}
+              <p>{selectedFileName}</p>
+
+              <Button
+                  href="http://localhost:3000/change-password"
+                  variant="contained"
+              >
+                Change Password
+              </Button>
+
+              <Button type="submit" variant="contained" color="secondary">
+                Update Credentials
+              </Button>
+            </Stack>
+          </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
   );
 }
 
