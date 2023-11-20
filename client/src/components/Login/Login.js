@@ -13,7 +13,7 @@ export default function Login({ setToken }) {
     username: "",
     password: "",
   });
-
+  const [error, setError] = useState("");
   const history = useHistory();
 
   const handleChange = (e) => {
@@ -54,11 +54,14 @@ export default function Login({ setToken }) {
         }); // Expires in 7 days
         console.log(userDataWithLoginMethod);
         history.push("/dashboard");
+      } else if (response.status === 401) {
+        setError("Incorrect username or password");
       } else {
-        console.log(await response.text());
+        console.error("Error:", response.statusText);
       }
     } else {
-      console.error("Error:", response.statusText);
+      setError("Incorrect username or password");
+      console.error(error);
     }
   };
 
@@ -127,6 +130,11 @@ export default function Login({ setToken }) {
           </Grid>
         </Box>
       </Box>
+      {error && (
+          <Typography variant="body2" color="error" align="center" sx={{ mt: 2 }}>
+            {error}
+          </Typography>
+      )}
       {/* <div className="login-wrapper">
         <h1>Please Log In</h1>
         <form onSubmit={handleSubmit}>

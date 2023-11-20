@@ -49,7 +49,6 @@ connectToMongo()
         app.use('/deleteReview', require('./server/routes/deleteReview')(db));
         app.use('/getReview', require('./server/routes/getReview')(db));
         app.use('/getMicrowaveName', require('./server/routes/getMicrowaveName')(db));
-        app.use('/changePassword', require('./server/routes/changePassword')(db));
 
         app.get("/auth/google/callback",
             passport.authenticate("google", {
