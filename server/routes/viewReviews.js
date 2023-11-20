@@ -14,7 +14,7 @@ module.exports = function(db) {
 
         try {
             const reviews = await db.collection("userReviews").find({ user_id }).toArray();
-            console.log("Fetched Reviews:", reviews); // Log fetched reviews
+            //console.log("Fetched Reviews:", reviews); // Log fetched reviews
 
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({ reviews });
