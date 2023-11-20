@@ -73,7 +73,6 @@ function ProfileSettings() {
 
   return (
     <Container component="main" maxWidth="md">
-      <h1>Edit Profile</h1>
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -85,6 +84,7 @@ function ProfileSettings() {
           textAlign: "center",
         }}
       >
+        <h1>Edit Profile</h1>
         <TextField
           margin="normal"
           required
