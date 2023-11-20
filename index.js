@@ -42,13 +42,14 @@ connectToMongo()
         app.use('/changeSettings', require('./server/routes/changeSettings')(db));
         app.use('/addReview', require('./server/routes/addReview')(db));
         app.use('/addMicrowave', require('./server/routes/addMicrowave')(db));
-        app.use( '/handleGoogleLogin', require('./server/routes/google-login-handler')(db));
+        app.use('/handleGoogleLogin', require('./server/routes/google-login-handler')(db));
         app.use('/editProfile', require('./server/routes/editProfile')(db));
         app.use('/viewReviews', require('./server/routes/viewReviews')(db));
         app.use('/editReview', require('./server/routes/editReview')(db));
         app.use('/deleteReview', require('./server/routes/deleteReview')(db));
         app.use('/getReview', require('./server/routes/getReview')(db));
         app.use('/getMicrowaveName', require('./server/routes/getMicrowaveName')(db));
+        app.use('/changePassword', require('./server/routes/changePassword')(db));
 
         app.get("/auth/google/callback",
             passport.authenticate("google", {
