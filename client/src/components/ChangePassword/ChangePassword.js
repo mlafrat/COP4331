@@ -74,6 +74,37 @@ function ChangePassword() {
           margin="normal"
           required
           fullWidth
+          sx={{
+            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "&:hover .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+              backgroundColor: "white",
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "&:hover .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined.Mui-focused": {
+              color: "black"
+            }
+          }} 
+
           name="newPassword"
           label="New Password"
           type="password"
@@ -84,6 +115,36 @@ function ChangePassword() {
           margin="normal"
           required
           fullWidth
+          sx={{
+            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "&:hover .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+              backgroundColor: "white",
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "&:hover .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined.Mui-focused": {
+              color: "black"
+            }
+          }} 
           name="confirmNewPassword"
           label="Confirm New Password"
           type="password"
@@ -92,9 +153,10 @@ function ChangePassword() {
           Change Password
         </Button>
         <Button
-          variant="outlined"
+          variant="contained"
           onClick={handleCancel}
           fullWidth
+          margin="normal"
           sx={{ mt: 3, mb: 2 }}
         >
           Cancel
