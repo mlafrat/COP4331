@@ -71,6 +71,36 @@ export default function SignUp() {
                 margin="normal"
                 required
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+                    backgroundColor: "white",
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "&:hover .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined.Mui-focused": {
+                    color: "black"
+                  }
+                }} 
                 id="email"
                 label="Email"
                 name="email"
@@ -83,6 +113,36 @@ export default function SignUp() {
                 margin="normal"
                 required
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+                    backgroundColor: "white",
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "&:hover .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined.Mui-focused": {
+                    color: "black"
+                  }
+                }} 
                 id="username"
                 label="Username"
                 name="username"
@@ -95,6 +155,36 @@ export default function SignUp() {
                 margin="normal"
                 required
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+                    backgroundColor: "white",
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "&:hover .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined.Mui-focused": {
+                    color: "black"
+                  }
+                }} 
                 id="password"
                 label="Password"
                 name="password"
@@ -106,6 +196,36 @@ export default function SignUp() {
                 margin="normal"
                 required
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "black"
+                  },
+                  "& .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "&:hover .MuiOutlinedInput-input": {
+                    color: "black"
+                  },
+                  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+                    backgroundColor: "white",
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "&:hover .MuiInputLabel-outlined": {
+                    color: "black"
+                  },
+                  "& .MuiInputLabel-outlined.Mui-focused": {
+                    color: "black"
+                  }
+                }} 
                 id="confirmPassword"
                 label="Confirm Password"
                 name="confirmPassword"

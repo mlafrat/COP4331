@@ -85,6 +85,36 @@ export default function Login({ setToken }) {
             margin="normal"
             required
             fullWidth
+            sx={{
+              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black"
+              },
+              "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black"
+              },
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black"
+              },
+              "& .MuiOutlinedInput-input": {
+                color: "black"
+              },
+              "&:hover .MuiOutlinedInput-input": {
+                color: "black"
+              },
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+                backgroundColor: "white",
+                color: "black"
+              },
+              "& .MuiInputLabel-outlined": {
+                color: "black"
+              },
+              "&:hover .MuiInputLabel-outlined": {
+                color: "black"
+              },
+              "& .MuiInputLabel-outlined.Mui-focused": {
+                color: "black"
+              }
+            }} 
             id="username"
             label="Username"
             name="username"
@@ -97,6 +127,36 @@ export default function Login({ setToken }) {
             margin="normal"
             required
             fullWidth
+            sx={{
+              "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black"
+              },
+              "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black"
+              },
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "black"
+              },
+              "& .MuiOutlinedInput-input": {
+                color: "black"
+              },
+              "&:hover .MuiOutlinedInput-input": {
+                color: "black"
+              },
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+                backgroundColor: "white",
+                color: "black"
+              },
+              "& .MuiInputLabel-outlined": {
+                color: "black"
+              },
+              "&:hover .MuiInputLabel-outlined": {
+                color: "black"
+              },
+              "& .MuiInputLabel-outlined.Mui-focused": {
+                color: "black"
+              }
+            }} 
             name="password"
             label="Password"
             type="password"
@@ -115,7 +175,7 @@ export default function Login({ setToken }) {
           </Button>
           <Button
             fullWidth
-            variant="outlined"
+            variant="contained"
             sx={{ mt: 0, mb: 1 }}
             href="http://localhost:3001/auth/google/callback"
           >

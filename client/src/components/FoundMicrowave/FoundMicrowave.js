@@ -63,13 +63,43 @@ function FoundMicrowave() {
           textAlign: "center",
         }}
       >
-        <h1>Have a new microwave?</h1>
+        <h1>Found a New Microwave?</h1>
         <TextField
           margin="small"
           id="location-building"
           fullWidth
+          sx={{
+            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "&:hover .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+              backgroundColor: "white",
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "&:hover .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined.Mui-focused": {
+              color: "black"
+            }
+          }} 
           label="Building Location"
-          placeholder="Tell us what building this microwave is located in"
+          placeholder="Which building is this microwave in?"
           type="text"
           name="location_building"
           value={formData.location_building}
@@ -78,11 +108,41 @@ function FoundMicrowave() {
         <TextField
           margin="normal"
           fullWidth
+          sx={{
+            "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "black"
+            },
+            "& .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "&:hover .MuiOutlinedInput-input": {
+              color: "black"
+            },
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+              backgroundColor: "white",
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "&:hover .MuiInputLabel-outlined": {
+              color: "black"
+            },
+            "& .MuiInputLabel-outlined.Mui-focused": {
+              color: "black"
+            }
+          }} 
           id="location-description"
           label="Location Description"
           multiline
           rows={6}
-          placeholder="Please provide a detailed description of where this microwave is located"
+          placeholder="Please provide a detailed description of where this microwave is located."
           type="text"
           name="location_description"
           value={formData.location_description}
