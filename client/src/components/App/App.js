@@ -10,6 +10,10 @@ import ChangePassword from '../ChangePassword/ChangePassword';
 import FoundMicrowave from '../FoundMicrowave/FoundMicrowave';
 import Reviews from '../Reviews/Reviews';
 
+import TestReviews from '../TestReviews/TestReviews';
+import NewReview from '../NewReview/NewReview';
+
+
 function App() {
     const [token, setToken] = useState();
 
@@ -17,10 +21,16 @@ function App() {
         <div className="wrapper">
             <h1>Welcome to Knightrowave!</h1>
             <Router>
-                <Switch>
+                <Switch>                 
                     <Route exact path="/">
                         <Redirect to="/login"/>
                     </Route>
+                    <Route path="/test-reviews">
+                        <TestReviews/>
+                    </Route>    
+                    <Route path="/new-review">
+                        <NewReview/>
+                    </Route>                                              
                     <Route path="/dashboard">
                         <Dashboard/>
                         <Dropdown/>

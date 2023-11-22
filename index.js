@@ -49,6 +49,12 @@ connectToMongo()
         app.use('/deleteReview', require('./server/routes/deleteReview')(db));
         app.use('/getReview', require('./server/routes/getReview')(db));
         app.use('/getMicrowaveName', require('./server/routes/getMicrowaveName')(db));
+        app.use('/getMicrowaveDescrip', require('./server/routes/getMicrowaveDescrip')(db));
+        app.use('/viewMicrowaves', require('./server/routes/viewMicrowaves')(db));
+        app.use('/getMicrowave', require('./server/routes/getMicrowave')(db));
+        app.use('/viewMicrowaveReviews', require('./server/routes/viewMicrowaveReviews')(db));
+        app.use('/updateRating', require('./server/routes/updateRating')(db));
+
 
         app.get("/auth/google/callback",
             passport.authenticate("google", {

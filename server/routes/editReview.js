@@ -19,6 +19,22 @@ module.exports = function(db) {
                 { review_id: reviewId },
                 { $set: updatedData }
             );
+
+            // update total rating on microwave
+            const microwaveId = updatedData.microwave_id;
+            const rating = updatedData.rating;
+
+            const existingMicrowave = await db.collection("microwaveLocations").findOne({ microwave_id: microwaveId });
+            await db.collection("microwaveLocations").updateOne(
+                { microwave_id: microwaveId },
+                {
+                    $set: {
+                        total_rating: existingMicrowave.total_rating + rating,
+                        users_rated: existingMicrowave.users_rated + 1
+                    },
+                }
+            );
+
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({ message: 'Review updated successfully' });
         } catch (error) {

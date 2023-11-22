@@ -66,12 +66,15 @@ function Reviews() {
 
     const handleSave = async (reviewId, index) => {
         try {
+
             const updatedReviewText = reviews[index].review;
+            // we also need the microwave id
+            const microwaveId = reviews[index].microwave_id;
 
             await fetch(`http://localhost:3001/editReview?review_id=${reviewId}`, {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json',
-                }, body: JSON.stringify({review: updatedReviewText, rating: editedRating}),
+                }, body: JSON.stringify({review: updatedReviewText, rating: editedRating, microwave_id: microwaveId}),
             });
             const updatedReviews = [...reviews];
             updatedReviews[index].isEditing = false;
