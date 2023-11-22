@@ -14,14 +14,9 @@ module.exports = function(db) {
                 return res.status(404).json({ message: 'Review not found' });
             }
 
-            // Update the review with the new data
-            await db.collection("userReviews").updateOne(
-                { review_id: reviewId },
-                { $set: updatedData }
-            );
-
             // update total rating 
-            const microwaveId = updatedData.microwave_id;
+            const microwaveId = existingReview.microwave_id;
+            const oldRating = existingReview.rating;
             const rating = updatedData.rating;
 
             const existingMicrowave = await db.collection("microwaveLocations").findOne({ microwave_id: microwaveId });
@@ -29,11 +24,16 @@ module.exports = function(db) {
                 { microwave_id: microwaveId },
                 {
                     $set: {
-                        total_rating: existingMicrowave.total_rating + rating,
-                        users_rated: existingMicrowave.users_rated + 1
+                        total_rating: existingMicrowave.total_rating - oldRating + rating,
                     },
                 }
             );
+
+            // Update the review with the new data
+            await db.collection("userReviews").updateOne(
+                { review_id: reviewId },
+                { $set: updatedData }
+            );            
 
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json({ message: 'Review updated successfully' });
