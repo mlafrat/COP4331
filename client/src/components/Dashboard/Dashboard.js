@@ -11,19 +11,10 @@ function Dashboard() {
     const [microwaves, setMicrowaves] = useState([]);
 
     const initializeMicrowaves = (microwaveData) => {
-        const microwavesWithFlags = microwaveData.map((microwave) => ({
-            ...microwave, isViewing: false,
+        const microwaves = microwaveData.map((microwave) => ({
+            ...microwave,
         }));
-        setMicrowaves(microwavesWithFlags);
-    };
-
-    const handleView = async (microwaveId, index) => {
-        try {
-            window.location.href = `/test-reviews#${microwaveId}`;
-
-        } catch (error) {
-            console.error('Error updating review:', error);
-        }
+        setMicrowaves(microwaves);
     };
 
     useEffect(() => {
@@ -40,6 +31,15 @@ function Dashboard() {
         fetchData();
     }, []);
 
+    // switch to another page with reviews for this microwave
+    const handleView = async (microwaveId) => {
+        try {
+            window.location.href = `/test-reviews#${microwaveId}`;
+
+        } catch (error) {
+            console.error('Error updating review:', error);
+        }
+    };
 
   return(
     <div className="review-wrapper">
@@ -61,7 +61,7 @@ function Dashboard() {
                                 </div>                                    
                             </CardContent>
                             <CardActions>
-                                <Button onClick={() => handleView(microwave.microwave_id, index)}>View Reviews</Button>
+                                <Button onClick={() => handleView(microwave.microwave_id)}>View Reviews</Button>
                             </CardActions>
                         </Card>
                     </Grid>

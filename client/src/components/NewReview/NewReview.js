@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@mui/material/TextField';
 import Cookies from 'js-cookie';
-
-import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
 
 function NewReview() {
-
+    //get rating
     const [value, setValue] = React.useState(2);
 
+    //get user id
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
     const userId = userData ? userData.user_id : null;
 
+    //get microwave id
     console.log("receiving microwave id:");
     const microwave_id = window.location.hash.substring(1)
     console.log(microwave_id);   
@@ -34,6 +34,7 @@ function NewReview() {
      const handleSubmit = async (event) => {
         event.preventDefault();
 
+        //define new review to send
         const newWave = {
             review: formData.review,
             rating: value, 
@@ -41,12 +42,7 @@ function NewReview() {
             user_id: userId
         }
 
-        console.log("new wave")
-        console.log(newWave)
-
         try {
-
-            //const response = await fetch(`http://localhost:3001/addReview/${userId}`, {
             const response = await fetch(`http://localhost:3001/addReview`, {
                 method: 'PUT',
                 headers: {
@@ -56,6 +52,7 @@ function NewReview() {
             });
 
             if (response.ok) {
+                //return to previous page
                 window.location.href = `/test-reviews#${microwave_id}`;
             } else {
                 const errorMessage = await response.text();
@@ -67,11 +64,10 @@ function NewReview() {
         }
     };
 
-
+    //return to previous page
     const handleClose = async () => {
         window.location.href = `/test-reviews#${microwave_id}`;
     };    
-
 
     return (
         <div className="microwave-form-wrapper">

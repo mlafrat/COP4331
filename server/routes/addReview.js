@@ -22,7 +22,6 @@ router.put("/", async (req, res) => {
 
             // update total rating
             const existingMicrowave = await db.collection("microwaveLocations").findOne({ microwave_id: microwaveId });
-
             await db.collection("microwaveLocations").updateOne(
                 { microwave_id: microwaveId },
                 {

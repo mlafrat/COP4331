@@ -20,7 +20,7 @@ module.exports = function(db) {
                 { $set: updatedData }
             );
 
-            // update total rating on microwave
+            // update total rating 
             const microwaveId = updatedData.microwave_id;
             const rating = updatedData.rating;
 

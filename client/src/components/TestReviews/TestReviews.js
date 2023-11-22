@@ -1,29 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import Cookies from 'js-cookie';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-
 function TestReviews() {
 
-    console.log("getting silly");
+    //get microwave id
     const microwave_id = window.location.hash.substring(1)
+    console.log("viewing microwave:");
     console.log(microwave_id);
-
-
-    const handleAdd = async () => {
-        window.location.href = `/new-review#${microwave_id}`;
-    };    
-
-
-    const handleClose = async () => {
-        window.location.href = `/dashboard`;
-    };    
-
 
     //review stuff
     const [reviews, setReviews] = useState([]);
@@ -62,29 +49,22 @@ function TestReviews() {
         fetchDescrip();
     })
 
+    //fetch location and description to display
     const fetchName = async () => {
         try {
-            console.log("sanity check!")
             const response = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwave_id}`);
             const data = await response.json();
-            console.log("fetching a name...")
-            console.log(data)
 
             setMicrowaveName((microwaveName) => (
                 data.microwave_name));
-            console.log(microwaveName)
-
         } catch (error) {
             console.error('Error fetching microwave name:', error);
     }}; 
 
     const fetchDescrip = async () => {
         try {
-            console.log("sanity check #2!")
             const response = await fetch(`http://localhost:3001/getMicrowaveDescrip?microwave_id=${microwave_id}`);
             const data = await response.json();
-            console.log("fetching a description...")
-            console.log(data)
 
             setMicrowaveDescrip((microwaveDescrip) => (
                 data.microwave_descrip));
@@ -95,10 +75,20 @@ function TestReviews() {
     }};    
 
 
-//to-do: add an 'if' that doesn't let you add another review. like replace the 'add review button'
+    //bring us to a new page with the form
+    const handleAdd = async () => {
+        window.location.href = `/new-review#${microwave_id}`;
+    };    
+
+    //return to dash
+    const handleClose = async () => {
+        window.location.href = `/dashboard`;
+    };        
+
+
+//to-do: add something that doesn't let you add another review if you've already rated the wave
 
     return(
-
         <div className="review-wrapper">
             <h2>Microwave Reviews</h2>
             <h2>Location: {microwaveName}</h2>

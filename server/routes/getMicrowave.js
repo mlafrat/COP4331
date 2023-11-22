@@ -7,12 +7,7 @@ module.exports = function(db) {
         const microwave_id = parseInt(req.query.microwave_id);
 
         try {
-            console.log("hello, it's me the function")
             const microwave = await db.collection("microwaveLocations").findOne({ microwave_id: microwave_id });
-            console.log("this is what i'm sending you")
-            console.log(microwave)
-            console.log("hope that helped")
-
 
             if (!microwave) {
                 return res.status(404).json({ message: 'Microwave not found' });
