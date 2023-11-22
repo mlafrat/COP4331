@@ -1,5 +1,6 @@
 .review-wrapper {
   display: flex;
+  padding: 20px;
   flex-direction: column;
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,

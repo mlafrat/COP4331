@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="wrapper">
       <div className="rectangle">
-        <h1 style={{ color: "white" }}>Knightrowave</h1>
+        <h1 style={{ color: "white", padding: 12 }}>Knightrowave</h1>
       </div>
       <Router>
         <Switch>
