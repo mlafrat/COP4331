@@ -131,6 +131,7 @@ function Reviews() {
                                         {review.isEditing ? (
                                             <>
                                                 <textarea
+                                                    className="text-box"
                                                     value={review.review}
                                                     onChange={(e) => {
                                                         const updatedReviews = [...reviews];
@@ -140,12 +141,14 @@ function Reviews() {
                                                     rows={4}
                                                     cols={40}
                                                 />
-                                                <div>
+                                                <div className="star-rating-container">
                                                     <StarRating
+                                                        className="star-rating"
                                                         rating={editedRating || review.rating}
                                                         onRate={(newRating) => setEditedRating(newRating)}
                                                     />
                                                 </div>
+
                                             </>
                                         ) : (
                                             <p>{review.review}</p>
