@@ -90,7 +90,6 @@ function FoundMicrowave() {
                     flexDirection: "column",
                     alignItems: "center",
                     textAlign: "center",
-                    // Your CSS styles here...
                 }}
             >
                 <h1>Found a New Microwave?</h1>
