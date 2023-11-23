@@ -59,23 +59,27 @@ function FoundMicrowave() {
         event.preventDefault();
 
         try {
+            const formDataWithImage = new FormData();
+            formDataWithImage.append('location_building', formData.location_building);
+            formDataWithImage.append('location_description', formData.location_description);
+            formDataWithImage.append('gps_lat', formData.gps_lat);
+            formDataWithImage.append('gps_long', formData.gps_long);
+            formDataWithImage.append('microwaveImage', imageFile); // Append the image file
+
             const response = await fetch(`http://localhost:3001/addMicrowave/${userId}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
+                method: 'PUT',
+                body: formDataWithImage,
             });
 
             if (response.ok) {
-                alert("Microwave added successfully");
+                alert('Microwave added successfully');
             } else {
                 const errorMessage = await response.text();
                 alert(`Error: ${errorMessage}`);
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("Network error. Please try again.");
+            console.error('Error:', error);
+            alert('Network error. Please try again.');
         }
     };
 
