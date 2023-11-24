@@ -1,7 +1,13 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "options": {
+    "AllowedHosts": [
+      "localhost",
+      ".localhost"
+    ],
+    "proxy": "http://localhost:3001"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",

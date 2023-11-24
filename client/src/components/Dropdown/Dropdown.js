@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import user from './user.png';
-import inbox from './envelope.png';
-import logout from './log-out.png';
+import star from './star.png'
+import microwave from './microwave.png';
+import logout from './logout.png';
 import knightro from './knightro.png';
 import home from './home.png';
 import './Dropdown.css';
@@ -59,7 +60,7 @@ function Dropdown() {
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
             <h3>Welcome, {userName}!<br /></h3>
             <ul>
-              {!(location.pathname === "/dashboard") && (
+              {location.pathname !== "/dashboard" && (
                   <li className='dropdownItem'>
                     <Link to="/dashboard">
                       <img src={home} alt="Return to Home" />
@@ -67,7 +68,7 @@ function Dropdown() {
                     </Link>
                   </li>
               )}
-              {loginMethod === 'local' && ( // Conditionally render based on login method
+              {loginMethod === 'local' && location.pathname !== "/profile-settings" && (
                   <li className='dropdownItem'>
                     <Link to="/profile-settings">
                       <img src={user} alt="Profile Settings" />
@@ -75,18 +76,22 @@ function Dropdown() {
                     </Link>
                   </li>
               )}
-              <li className='dropdownItem'>
-                <Link to="/my-reviews">
-                  <img src={inbox} alt="My Reviews" />
-                  My Reviews
-                </Link>
-              </li>
-              <li className='dropdownItem'>
-                <Link to="/found-microwave">
-                  <img src={inbox} alt="Found a Microwave?" />
-                  Found a Microwave?
-                </Link>
-              </li>
+              {location.pathname !== "/my-reviews" && (
+                  <li className='dropdownItem'>
+                    <Link to="/my-reviews">
+                      <img src={star} alt="My Reviews" />
+                      My Reviews
+                    </Link>
+                  </li>
+              )}
+              {location.pathname !== "/found-microwave" && (
+                  <li className='dropdownItem'>
+                    <Link to="/found-microwave">
+                      <img src={microwave} alt="Found a Microwave?" />
+                      Found a Microwave?
+                    </Link>
+                  </li>
+              )}
               <li className='dropdownItem'>
                 <Link to="/login" onClick={handleLogout}>
                   <img src={logout} alt="Logout" />
