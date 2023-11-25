@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -90,14 +91,16 @@ function TestReviews() {
                     {reviews.map((review, index) => (
                         <Grid item key={index}>
                             <Card>
+                                <CardActions sx={{ justifyContent: 'center' }}>
+                                    <Button startIcon={<StarRateIcon />}>
+                                        {`${review.rating || 0} Stars`}
+                                    </Button>
+                                </CardActions>
                                 <CardContent sx={{ display: 'block' }}>
                                     <div className="review-text">
                                         <p style={{ fontWeight: '700', textAlign: 'center' }}>{review.username} Wrote:</p>
                                         <p style={{ inlineSize: '350px', textAlign: 'center', paddingLeft: '0px' }}>{review.review}</p>
                                     </div>
-                                    <Button startIcon={<StarRateIcon />}>
-                                        {`${review.rating || 0} Stars`}
-                                    </Button>
                                 </CardContent>
                             </Card>
                         </Grid>
