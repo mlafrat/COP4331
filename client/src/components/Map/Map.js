@@ -4,11 +4,11 @@ import { GoogleMap, Marker, DirectionsService, DirectionsRenderer, LoadScript } 
 const googleApiKey = 'AIzaSyBBVLikZWGvzI6BZ3zER1DDcOMcGXmm2ZI';
 //'AIzaSyCTEc8bsYUd3rG7vHK3bdIKDH14iDbFXZ0';
 const mapContainerStyle = {
-  width: '1300px',
+  width: '1500px',
   height: '800px',
   border: '10px solid #000000',
   borderRadius: '10px',
-  margin: '5% 0 0 5%',
+  margin: '0.5% 0 0 5%',
 };
 const center = {
   lat: 28.602542,
