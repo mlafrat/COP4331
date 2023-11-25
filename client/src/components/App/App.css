@@ -61,7 +61,7 @@ a {
 /* Apply fonts to body */
 body {
   font-family: "Exo", sans-serif;
-  overflow: hidden; /* Ensures the animation won't create scrollbars */
+  overflow: scroll;
   position: relative;
 }
 
@@ -96,7 +96,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .circles li {
