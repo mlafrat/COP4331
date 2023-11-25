@@ -20,3 +20,5 @@
 .MuiCardActions-root .MuiButton-root {
   color: black;
 }
+
+.review-wrapper { overflow: scroll; }

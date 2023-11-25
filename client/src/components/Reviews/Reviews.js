@@ -117,9 +117,16 @@ function Reviews() {
 
     return (
         <div className="review-wrapper">
-            <h2 style={{padding:'10px'}}>My Reviews</h2>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={3} columns={{ xs: 12, sm: 6, md: 4 }} sx={{justifyContent:'center'}}>
+            <h2 style={{ padding: '10px' }}>My Reviews</h2>
+            <Box
+                sx={{
+                    maxHeight: '600px', // Adjust maxHeight as needed
+                    overflowY: 'auto',
+                    scrollbarWidth: 'auto', // Show scrollbar in Firefox
+                    webkitOverflowScrolling: 'auto', // Show scrollbar in Webkit browsers
+                }}
+            >
+                <Grid container spacing={3} columns={{ xs: 12, sm: 6, md: 4 }} sx={{ justifyContent: 'center' }}>
                     {reviews.map((review, index) => (
                         <Grid item key={index}>
                             <Card>
