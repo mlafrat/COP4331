@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import { Box, Stack } from "@mui/material";
+import './TestReviews.css';
 
 function TestReviews() {
 
@@ -83,40 +86,49 @@ function TestReviews() {
     //return to dash
     const handleClose = async () => {
         window.location.href = `/dashboard`;
-    };        
+    };  
 
-
-//to-do: add something that doesn't let you add another review if you've already rated the wave
 
     return(
-        <div className="review-wrapper">
-            <h2>Microwave Reviews</h2>
-            <h2>Location: {microwaveName}</h2>
-            <h2>Description: {microwaveDescrip}</h2>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={3} columns={{ xs: 12, sm: 6, md: 4 }}>
-                    {reviews.map((review, index) => (
-                        <Grid item key={index}>
-                            <Card>
-                                <CardContent>
-                                    <div className="review-text">
-                                        <p>{review.review}</p>
-                                    </div>
-                                    <div className="review-text">
-                                        <p>Rating:</p>
-                                        <p>{review.rating}</p>
-                                    </div>                                    
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Box>
-            <Button onClick={() => handleAdd()}>Add a review?</Button>
-            <Button onClick={() => handleClose()}>Go back</Button>
+            <div className="review-wrapper">
+                <div style={{textAlign:'center'}}>
+                    <h1>Microwave Reviews</h1>
+                    <h2>Location: {microwaveName}</h2>
+                    <h2>Description: {microwaveDescrip}</h2>
+                </div>
+                <Stack sx={{ pt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', padding:'10px' }}>
+                    <Stack direction="row" spacing={4} justifyContent="center">
+                        <Button component="label" variant="contained" onClick={() => handleAdd()} >
+                            Add A Review?
+                        </Button>
+                        <Button type="submit" variant="contained" onClick={() => handleClose()} >
+                            Return to Reviews
+                        </Button>
+                    </Stack>
+                </Stack>
+                <Box sx={{ flexGrow: 1 }}>
+                    <Grid container spacing={3} columns={{ xs: 12, sm: 6, md: 4 }} sx={{justifyContent:'center'}} >
+                        {reviews.map((review, index) => (
+                            <Grid item key={index}>
+                                <Card>
+                                    <CardActions sx={{justifyContent:'center'}}>
+                                        <Button startIcon={<StarRateIcon />}>
+                                            {`${review.rating || 0} Stars`}
+                                        </Button>
+                                    </CardActions>
+                                    <CardContent sx={{display:'block'}}>
+                                        <div className="review-text">
+                                            <p style={{fontWeight:'700', textAlign:'center'}}>User Wrote: </p>
+                                            <p style={{inlineSize:'350px', textAlign:'center', paddingLeft:'0px'}}>{review.review}</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Box>  
         </div>
-
-        );
-    }
+    );
+}
     
 export default TestReviews;
