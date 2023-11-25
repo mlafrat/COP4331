@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, DirectionsService, DirectionsRenderer, LoadScript } from '@react-google-maps/api';
 
-const googleApiKey = 'AIzaSyBBVLikZWGvzI6BZ3zER1DDcOMcGXmm2ZI';
+const googleApiKey = '';
+//'AIzaSyBBVLikZWGvzI6BZ3zER1DDcOMcGXmm2ZI';
 //'AIzaSyCTEc8bsYUd3rG7vHK3bdIKDH14iDbFXZ0';
 const mapContainerStyle = {
   width: '50%',

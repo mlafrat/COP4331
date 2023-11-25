@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+
 import { useHistory } from "react-router-dom";
-import "./Login.css";
 import Cookies from "js-cookie";
+
 import { Box, Container, Link, Grid, Avatar } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
+import "./Login.css";
+
 export default function Login({ setToken }) {
+  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
