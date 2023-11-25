@@ -16,6 +16,8 @@ import FoundMicrowave from "../FoundMicrowave/FoundMicrowave";
 import Reviews from "../Reviews/Reviews";
 import { Container } from "@material-ui/core";
 
+import Map from '../Map/Map';
+
 function App() {
   const [token, setToken] = useState();
 
@@ -32,6 +34,7 @@ function App() {
           <Route path="/dashboard">
             <Dashboard />
             <Dropdown />
+            <Map />
           </Route>
           <Route path="/profile-settings">
             <ProfileSettings />
