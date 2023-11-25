@@ -120,7 +120,6 @@ function Reviews() {
             <h2 style={{ padding: '10px' }}>My Reviews</h2>
             <Box
                 sx={{
-                    maxHeight: '600px', // Adjust maxHeight as needed
                     overflowY: 'scroll',
                     scrollbarWidth: 'auto',
                     webkitOverflowScrolling: 'scroll', // Show scrollbar in Webkit browsers
