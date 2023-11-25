@@ -15,6 +15,7 @@ function ChangePassword() {
   const history = useHistory();
 
   const handleChange = async (e) => {
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
     e.preventDefault();
     if (newPassword !== confirmNewPassword) {
       setError("Passwords do not match");
@@ -23,7 +24,7 @@ function ChangePassword() {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/editProfile/${userId}`,
+        `${apiUrl}/editProfile/${userId}`,
         {
           method: "PUT",
           headers: {
