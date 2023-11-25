@@ -53,7 +53,7 @@ connectToMongo()
         app.use('/viewMicrowaves', require('./server/routes/viewMicrowaves')(db));
         app.use('/getMicrowave', require('./server/routes/getMicrowave')(db));
         app.use('/viewMicrowaveReviews', require('./server/routes/viewMicrowaveReviews')(db)); //reviews by microwave
-
+        app.use('/getUsernames', require('./server/routes/getUsernames')(db));
         app.get("/auth/google/callback",
             passport.authenticate("google", {
                 successRedirect: "/handleGoogleLogin",
