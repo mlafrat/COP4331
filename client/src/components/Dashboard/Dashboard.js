@@ -52,11 +52,11 @@ function Dashboard() {
                     container
                     spacing={3}
                     columns={{ xs: 12, sm: 6, md: 4 }}
-                    sx={{ display:'block', flexDirection: 'column', padding:'10px'}}
+                    sx={{ display: 'block', flexDirection: 'column', padding: '10px', paddingRight: '20px', overflowX: 'hidden' }}
                 >
                     {microwaves.map((microwave, index) => (
-                        <Grid item key={index}>
-                            <Card sx={{ textAlign: 'center'}}>
+                        <Grid item key={index} sx={{ paddingRight: '20px', maxWidth: '780px' }}>
+                            <Card sx={{ textAlign: 'center', width: '100%' }}>
                                 <CardContent sx={{ textAlign:'center'}}>
                                     <div className="subtitle">
                                         <p style={{ fontWeight: '700', textAlign: 'center' }}>Microwave Location: </p>
