@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -9,81 +8,62 @@ import { Box, Stack } from "@mui/material";
 import './TestReviews.css';
 
 function TestReviews() {
+    const microwave_id = window.location.hash.substring(1);
 
-    //get microwave id
-    const microwave_id = window.location.hash.substring(1)
-    console.log("viewing microwave:");
-    console.log(microwave_id);
-
-    //review stuff
     const [reviews, setReviews] = useState([]);
-
-    const initializeReviews = (reviewData) => {
-        const microwaveReviews= reviewData.map((review) => ({
-            ...review,
-        }));
-        setReviews(microwaveReviews);
-    };
+    const [microwaveName, setMicrowaveName] = useState();
+    const [microwaveDescrip, setMicrowaveDescrip] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
-
             if (microwave_id) {
                 try {
-                    // Fetch call to get reviews by microwave ID
                     const response = await fetch(`http://localhost:3001/viewMicrowaveReviews?microwave_id=${microwave_id}`);
                     const data = await response.json();
                     initializeReviews(data.reviews);
+
+                    const microwaveNameResponse = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwave_id}`);
+                    const microwaveNameData = await microwaveNameResponse.json();
+                    setMicrowaveName(microwaveNameData.microwave_name);
+
+                    const microwaveDescripResponse = await fetch(`http://localhost:3001/getMicrowaveDescrip?microwave_id=${microwave_id}`);
+                    const microwaveDescripData = await microwaveDescripResponse.json();
+                    setMicrowaveDescrip(microwaveDescripData.microwave_descrip);
+
+                    const reviewsWithUsernames = await Promise.all(
+                        data.reviews.map(async (review) => {
+                            console.log(review.user_id);
+                            const userResponse = await fetch(`http://localhost:3001/getUsernames?user_id=${review.user_id}`);
+                            const userData = await userResponse.json();
+                            console.log(userData.username);
+                            return {
+                                ...review,
+                                username: userData.username,
+                            };
+                        })
+                    );
+
+                    setReviews(reviewsWithUsernames);
                 } catch (error) {
-                    console.error('Error fetching reviews:', error);
+                    console.error('Error fetching data:', error);
                 }
             }
         };
 
         fetchData();
-    }, []);
+    }, [microwave_id]);
 
+    const initializeReviews = (reviewData) => {
+        const microwaveReviews = reviewData.map((review) => ({
+            ...review,
+        }));
+        setReviews(microwaveReviews);
+    };
 
-    //microwave stuff
-    const [microwaveName, setMicrowaveName] = useState();
-    const [microwaveDescrip, setMicrowaveDescrip] = useState();
-    useEffect(() => { 
-        fetchName();
-        fetchDescrip();
-    })
-
-    //fetch location and description to display
-    const fetchName = async () => {
-        try {
-            const response = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwave_id}`);
-            const data = await response.json();
-
-            setMicrowaveName((microwaveName) => (
-                data.microwave_name));
-        } catch (error) {
-            console.error('Error fetching microwave name:', error);
-    }}; 
-
-    const fetchDescrip = async () => {
-        try {
-            const response = await fetch(`http://localhost:3001/getMicrowaveDescrip?microwave_id=${microwave_id}`);
-            const data = await response.json();
-
-            setMicrowaveDescrip((microwaveDescrip) => (
-                data.microwave_descrip));
-            console.log(microwaveDescrip)
-
-        } catch (error) {
-            console.error('Error fetching microwave name:', error);
-    }};    
-
-
-    //bring us to a new page with the form
     const handleAdd = async () => {
         window.location.href = `/new-review#${microwave_id}`;
-    };    
+    };
 
-    //return to dash
     const handleClose = async () => {
         window.location.href = `/dashboard`;
     };
@@ -110,16 +90,14 @@ function TestReviews() {
                     {reviews.map((review, index) => (
                         <Grid item key={index}>
                             <Card>
-                                <CardActions sx={{ justifyContent: 'center' }}>
+                                <CardContent sx={{ display: 'block' }}>
+                                    <div className="review-text">
+                                        <p style={{ fontWeight: '700', textAlign: 'center' }}>{review.username} Wrote:</p>
+                                        <p style={{ inlineSize: '350px', textAlign: 'center', paddingLeft: '0px' }}>{review.review}</p>
+                                    </div>
                                     <Button startIcon={<StarRateIcon />}>
                                         {`${review.rating || 0} Stars`}
                                     </Button>
-                                </CardActions>
-                                <CardContent sx={{ display: 'block' }}>
-                                    <div className="review-text">
-                                        <p style={{ fontWeight: '700', textAlign: 'center' }}>User Wrote: </p>
-                                        <p style={{ inlineSize: '350px', textAlign: 'center', paddingLeft: '0px' }}>{review.review}</p>
-                                    </div>
                                 </CardContent>
                             </Card>
                         </Grid>
@@ -129,5 +107,5 @@ function TestReviews() {
         </div>
     );
 }
-    
+
 export default TestReviews;
