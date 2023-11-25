@@ -18,7 +18,7 @@ import { Container } from "@material-ui/core";
 import TestReviews from '../TestReviews/TestReviews';
 import NewReview from '../NewReview/NewReview';
 
-import Map from '../Map/Map';
+
 
 function App() {
   const [token, setToken] = useState();
@@ -44,7 +44,6 @@ function App() {
           <Route path="/dashboard">
             <Dashboard />
             <Dropdown />
-            <Map />
           </Route>
           <Route path="/profile-settings">
             <ProfileSettings />
