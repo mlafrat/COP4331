@@ -16,10 +16,11 @@ function Reviews() {
     const [reviews, setReviews] = useState([]);
     const [editedRating, setEditedRating] = useState(0);
     const [microwaveNames, setMicrowaveNames] = useState({});
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
     const fetchMicrowaveName = async (microwaveId) => {
         try {
-            const response = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwaveId}`);
+            const response = await fetch(`${apiUrl}/getMicrowaveName?microwave_id=${microwaveId}`);
             const data = await response.json();
             if (data && data.microwave_name) {
                 setMicrowaveNames((prevNames) => ({
@@ -52,7 +53,7 @@ function Reviews() {
         const confirmation = window.confirm('Are you sure you want to delete this review?');
         if (confirmation) {
             try {
-                await fetch(`http://localhost:3001/deleteReview?review_id=${reviewId}`, {
+                await fetch(`${apiUrl}/deleteReview?review_id=${reviewId}`, {
                     method: 'DELETE',
                 });
                 const updatedReviews = [...reviews];
@@ -68,7 +69,7 @@ function Reviews() {
         try {
             const updatedReviewText = reviews[index].review;
             
-            await fetch(`http://localhost:3001/editReview?review_id=${reviewId}`, {
+            await fetch(`${apiUrl}/editReview?review_id=${reviewId}`, {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json',
                 }, body: JSON.stringify({review: updatedReviewText, rating: editedRating}),
@@ -91,7 +92,7 @@ function Reviews() {
             if (extractedUserId) {
                 try {
                     // Fetch call to get reviews by user ID
-                    const response = await fetch(`http://localhost:3001/viewReviews?user_id=${extractedUserId}`);
+                    const response = await fetch(`${apiUrl}/viewReviews?user_id=${extractedUserId}`);
                     const data = await response.json();
                     initializeReviews(data.reviews);
                 } catch (error) {

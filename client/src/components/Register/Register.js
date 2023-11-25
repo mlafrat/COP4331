@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 export default function SignUp() {
+  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -28,7 +29,7 @@ export default function SignUp() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/register", {
+      const response = await fetch(`${apiUrl}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

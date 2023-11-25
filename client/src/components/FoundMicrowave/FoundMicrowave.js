@@ -6,6 +6,7 @@ import { Container, Box, TextField, Stack } from "@mui/material";
 function FoundMicrowave() {
     const userData = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
     const userId = userData ? userData.user_id : null;
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
     const [imageFile, setImageFile] = useState(null);
     const [imageName, setImageName] = useState("");
@@ -65,7 +66,7 @@ function FoundMicrowave() {
             formDataWithImage.append('gps_long', formData.gps_long);
             formDataWithImage.append('microwaveImage', imageFile); // Append the image file
 
-            const response = await fetch(`http://localhost:3001/addMicrowave/${userId}`, {
+            const response = await fetch(`${apiUrl}/addMicrowave/${userId}`, {
                 method: 'PUT',
                 body: formDataWithImage,
             });

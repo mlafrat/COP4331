@@ -10,6 +10,7 @@ import './TestReviews.css';
 
 function TestReviews() {
     const microwave_id = window.location.hash.substring(1);
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
     const [reviews, setReviews] = useState([]);
     const [microwaveName, setMicrowaveName] = useState();
@@ -19,22 +20,22 @@ function TestReviews() {
         const fetchData = async () => {
             if (microwave_id) {
                 try {
-                    const response = await fetch(`http://localhost:3001/viewMicrowaveReviews?microwave_id=${microwave_id}`);
+                    const response = await fetch(`${apiUrl}/viewMicrowaveReviews?microwave_id=${microwave_id}`);
                     const data = await response.json();
                     initializeReviews(data.reviews);
 
-                    const microwaveNameResponse = await fetch(`http://localhost:3001/getMicrowaveName?microwave_id=${microwave_id}`);
+                    const microwaveNameResponse = await fetch(`${apiUrl}/getMicrowaveName?microwave_id=${microwave_id}`);
                     const microwaveNameData = await microwaveNameResponse.json();
                     setMicrowaveName(microwaveNameData.microwave_name);
 
-                    const microwaveDescripResponse = await fetch(`http://localhost:3001/getMicrowaveDescrip?microwave_id=${microwave_id}`);
+                    const microwaveDescripResponse = await fetch(`${apiUrl}/getMicrowaveDescrip?microwave_id=${microwave_id}`);
                     const microwaveDescripData = await microwaveDescripResponse.json();
                     setMicrowaveDescrip(microwaveDescripData.microwave_descrip);
 
                     const reviewsWithUsernames = await Promise.all(
                         data.reviews.map(async (review) => {
                             console.log(review.user_id);
-                            const userResponse = await fetch(`http://localhost:3001/getUsernames?user_id=${review.user_id}`);
+                            const userResponse = await fetch(`${apiUrl}/getUsernames?user_id=${review.user_id}`);
                             const userData = await userResponse.json();
                             console.log(userData.username);
                             return {
