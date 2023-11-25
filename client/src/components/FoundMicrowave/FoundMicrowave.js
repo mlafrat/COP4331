@@ -52,8 +52,7 @@ function FoundMicrowave() {
 
     useEffect(() => {
         fetchUserLocation();
-    }, [fetchUserLocation]);
-
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
