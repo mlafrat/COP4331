@@ -67,7 +67,7 @@ function Reviews() {
     const handleSave = async (reviewId, index) => {
         try {
             const updatedReviewText = reviews[index].review;
-
+            
             await fetch(`http://localhost:3001/editReview?review_id=${reviewId}`, {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json',
