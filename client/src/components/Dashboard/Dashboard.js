@@ -70,7 +70,7 @@ function Dashboard() {
                                         <p style={{ fontWeight: '700', textAlign: 'center' }}>Rating: </p>
                                         <p style={{ inlineSize: '350px', textAlign: 'center', paddingLeft: '0px' }}>
                                             {microwave.users_rated !== 0
-                                                ? microwave.total_rating / microwave.users_rated
+                                                ? (microwave.total_rating / microwave.users_rated).toFixed(1) // Rounded to one decimal place
                                                 : 'N/A'}
                                         </p>
                                     </div>
