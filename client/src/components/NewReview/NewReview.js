@@ -7,83 +7,71 @@ import Typography from '@mui/material/Typography';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
 
 function NewReview() {
-    //get rating
-    const [value, setValue] = React.useState(2);
-
-    //get user id
-    const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
-    const userId = userData ? userData.user_id : null;
-
-    //get microwave id
-    console.log("receiving microwave id:");
-    const microwave_id = window.location.hash.substring(1)
-    console.log(microwave_id);   
-
     const [formData, setFormData] = useState({
         review: '',
     });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+    const [value, setValue] = useState(2);
+    const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
+    const userId = userData ? userData.user_id : null;
+
+    // Extracting microwave_id from URL hash
+    const microwaveId = window.location.hash.substring(1);
+
+    const handleChange = (event) => {
         setFormData({
             ...formData,
-            [name]: value,
+            [event.target.name]: event.target.value,
         });
     };
 
-     const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-
-        //define new review to send
-        const newWave = {
-            review: formData.review,
-            rating: value, 
-            microwave_id: microwave_id,
-            user_id: userId
-        }
-
         try {
-            const response = await fetch(`http://localhost:3001/addReview`, {
+            const response = await fetch('http://localhost:3001/addReview', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newWave),
+                body: JSON.stringify({
+                    review: formData.review,
+                    rating: value,
+                    microwave_id: microwaveId,
+                    user_id: userId,
+                }),
             });
 
             if (response.ok) {
-                //return to previous page
-                window.location.href = `/test-reviews#${microwave_id}`;
+                // Redirect or perform any necessary actions upon successful submission
+                window.location.href = `/test-reviews#${microwaveId}`;
             } else {
-                const errorMessage = await response.text();
-                alert(`Error: ${errorMessage}`);
+                // Handle errors if needed
+                console.error('Failed to submit review');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Network error. Please try again.');
         }
     };
 
-    //return to previous page
-    const handleClose = async () => {
-        window.location.href = `/test-reviews#${microwave_id}`;
-    };    
+    const handleClose = () => {
+        window.location.href = `/test-reviews#${microwaveId}`;
+    };
 
     return (
         <div className="microwave-form-wrapper">
             <h1>New Review</h1>
             <form onSubmit={handleSubmit}>
-            <div>
-                <Typography component="legend">1 Star = Terrible, 5 Stars = Knightrolicious</Typography>
-                <Rating
-                    name="star-rating"
-                    value={value}
-                    onChange={(event, newValue) => {
-                    setValue(newValue);
-                    }}
-                    icon={<MicrowaveIcon fontSize="inherit" />}
-                    emptyIcon={<MicrowaveIcon fontSize="inherit" />}
-                />
+                <div>
+                    <Typography component="legend">1 Star = Terrible, 5 Stars = Knightrolicious</Typography>
+                    <Rating
+                        name="star-rating"
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}
+                        icon={<MicrowaveIcon fontSize="inherit" />}
+                        emptyIcon={<MicrowaveIcon fontSize="inherit" />}
+                    />
                 </div>
                 <div>
                     <TextField
@@ -102,7 +90,7 @@ function NewReview() {
                     <Button type="submit" variant="contained">
                         Submit Review
                     </Button>
-                    <Button onClick={() => handleClose()}>Cancel</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
                 </div>
             </form>
         </div>
