@@ -4,7 +4,7 @@ import { GoogleMap, Marker, DirectionsService, DirectionsRenderer, LoadScript } 
 const googleApiKey = 'AIzaSyBBVLikZWGvzI6BZ3zER1DDcOMcGXmm2ZI';
 //'AIzaSyCTEc8bsYUd3rG7vHK3bdIKDH14iDbFXZ0';
 const mapContainerStyle = {
-  width: '50%',
+  width: '1300px',
   height: '800px',
   border: '10px solid #000000',
   borderRadius: '10px',

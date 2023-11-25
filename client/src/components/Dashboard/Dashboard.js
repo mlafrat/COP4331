@@ -6,6 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import './Dashboard.css';
+import Map from '../Map/Map';
+
 
 function Dashboard() {
     const [microwaves, setMicrowaves] = useState([]);
@@ -43,32 +45,33 @@ function Dashboard() {
     return (
         <div className="review-wrapper">
             <h2 style={{ padding: '10px' }}>Microwaves</h2>
-            <Box sx={{ flexGrow: 1 }}>
+            <Box sx={{ flexGrow: 1, display:'flex', flexDirection:'row' }}>
+                <Map/>
                 <Grid
                     container
                     spacing={3}
                     columns={{ xs: 12, sm: 6, md: 4 }}
-                    sx={{ justifyContent: 'center', flexDirection: 'column', paddingLeft: '1000px' }}
+                    sx={{ display:'block', flexDirection: 'column', padding:'10px'}}
                 >
                     {microwaves.map((microwave, index) => (
                         <Grid item key={index}>
-                            <Card>
-                                <CardContent sx={{ display: 'block' }}>
+                            <Card sx={{ textAlign: 'center'}}>
+                                <CardContent sx={{ textAlign:'center'}}>
                                     <div className="subtitle">
                                         <p style={{ fontWeight: '700', textAlign: 'center' }}>Microwave Location: </p>
-                                        <p style={{ inlineSize: '350px', textAlign: 'center', paddingLeft: '0px' }}>
+                                        <p style={{textAlign: 'center', inlineSize:'100%'}}>
                                             {microwave.location_building}
                                         </p>
                                     </div>
                                     <div className="subtitle">
                                         <p style={{ fontWeight: '700', textAlign: 'center' }}>Location Description: </p>
-                                        <p style={{ inlineSize: '350px', textAlign: 'center', paddingLeft: '0px' }}>
+                                        <p style={{ textAlign: 'center', inlineSize:'100%'}}>
                                             {microwave.location_description}
                                         </p>
                                     </div>
                                     <div className="subtitle">
                                         <p style={{ fontWeight: '700', textAlign: 'center' }}>Rating: </p>
-                                        <p style={{ inlineSize: '350px', textAlign: 'center', paddingLeft: '0px' }}>
+                                        <p style={{ textAlign: 'center', inlineSize:'100%' }}>
                                             {microwave.users_rated !== 0
                                                 ? (microwave.total_rating / microwave.users_rated).toFixed(1) // Rounded to one decimal place
                                                 : 'N/A'}
