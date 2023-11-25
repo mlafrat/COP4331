@@ -11,6 +11,7 @@ import Map from '../Map/Map';
 
 function Dashboard() {
     const [microwaves, setMicrowaves] = useState([]);
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
     const initializeMicrowaves = (microwaveData) => {
         const microwaves = microwaveData.map((microwave) => ({
@@ -23,7 +24,7 @@ function Dashboard() {
         const fetchData = async () => {
             try {
                 // Fetch call to get all microwaves
-                const response = await fetch(`http://localhost:3001/viewMicrowaves`);
+                const response = await fetch(`${apiUrl}/viewMicrowaves`);
                 const data = await response.json();
                 initializeMicrowaves(data.microwaves);
             } catch (error) {

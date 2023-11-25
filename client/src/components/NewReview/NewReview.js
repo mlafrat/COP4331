@@ -13,6 +13,7 @@ import { Container, Box, Stack } from "@mui/material";
 function NewReview() {
     //get rating
     const [value, setValue] = React.useState(2);
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
     //get user id
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
@@ -47,7 +48,7 @@ function NewReview() {
         }
 
         try {
-            const response = await fetch(`http://localhost:3001/addReview`, {
+            const response = await fetch(`${apiUrl}/addReview`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
