@@ -15,6 +15,8 @@ import ChangePassword from "../ChangePassword/ChangePassword";
 import FoundMicrowave from "../FoundMicrowave/FoundMicrowave";
 import Reviews from "../Reviews/Reviews";
 import { Container } from "@material-ui/core";
+import TestReviews from '../TestReviews/TestReviews';
+import NewReview from '../NewReview/NewReview';
 
 function App() {
   const [token, setToken] = useState();
@@ -29,6 +31,14 @@ function App() {
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
+          <Route path="/test-reviews">
+            <TestReviews/>
+            <Dropdown />
+          </Route>    
+          <Route path="/new-review">
+              <NewReview/>
+              <Dropdown />
+          </Route>   
           <Route path="/dashboard">
             <Dashboard />
             <Dropdown />
