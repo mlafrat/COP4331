@@ -1,6 +1,5 @@
 .review-wrapper {
   display: flex;
-  padding: 20px;
   flex-direction: column;
   align-items: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -21,4 +20,16 @@
   color: black;
 }
 
-.review-wrapper { overflow: scroll; }
+.MuiStack-root .MuiButton-contained {
+  color: goldenrod;
+  background-color: black;
+}
+
+.MuiStack-root .MuiButton-contained:hover {
+  color: black;
+  background-color: goldenrod;
+}
+
+.MuiStack-root .MuiButton-root {
+  color: goldenrod;
+}

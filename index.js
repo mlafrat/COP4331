@@ -44,12 +44,16 @@ connectToMongo()
         app.use('/addMicrowave', require('./server/routes/addMicrowave')(db));
         app.use('/handleGoogleLogin', require('./server/routes/google-login-handler')(db));
         app.use('/editProfile', require('./server/routes/editProfile')(db));
-        app.use('/viewReviews', require('./server/routes/viewReviews')(db));
+        app.use('/viewReviews', require('./server/routes/viewReviews')(db)); //reviews by user
         app.use('/editReview', require('./server/routes/editReview')(db));
         app.use('/deleteReview', require('./server/routes/deleteReview')(db));
         app.use('/getReview', require('./server/routes/getReview')(db));
         app.use('/getMicrowaveName', require('./server/routes/getMicrowaveName')(db));
-
+        app.use('/getMicrowaveDescrip', require('./server/routes/getMicrowaveDescrip')(db));
+        app.use('/viewMicrowaves', require('./server/routes/viewMicrowaves')(db));
+        app.use('/getMicrowave', require('./server/routes/getMicrowave')(db));
+        app.use('/viewMicrowaveReviews', require('./server/routes/viewMicrowaveReviews')(db)); //reviews by microwave
+        app.use('/getUsernames', require('./server/routes/getUsernames')(db));
         app.get("/auth/google/callback",
             passport.authenticate("google", {
                 successRedirect: "/handleGoogleLogin",

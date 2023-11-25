@@ -98,7 +98,7 @@ function FoundMicrowave() {
             >
                 <h1>Found a New Microwave?</h1>
                 <TextField
-                    margin="small"
+                    margin="dense"
                     id="location-building"
                     fullWidth
                     sx={{

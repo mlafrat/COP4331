@@ -67,7 +67,7 @@ function Reviews() {
     const handleSave = async (reviewId, index) => {
         try {
             const updatedReviewText = reviews[index].review;
-
+            
             await fetch(`http://localhost:3001/editReview?review_id=${reviewId}`, {
                 method: 'PUT', headers: {
                     'Content-Type': 'application/json',
@@ -117,17 +117,25 @@ function Reviews() {
 
     return (
         <div className="review-wrapper">
-            <h2>My Reviews</h2>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={3} columns={{ xs: 12, sm: 6, md: 4 }}>
+            <h2 style={{ padding: '10px' }}>My Reviews</h2>
+            <Box
+                sx={{
+                    overflowY: 'scroll',
+                    scrollbarWidth: 'auto',
+                    webkitOverflowScrolling: 'scroll', // Show scrollbar in Webkit browsers
+                }}
+            >
+                <Grid container spacing={3} columns={{ xs: 12, sm: 6, md: 4 }} sx={{ justifyContent: 'center' }}>
                     {reviews.map((review, index) => (
                         <Grid item key={index}>
                             <Card>
-                                <CardContent>
+                                <CardContent sx={{display:'block'}}>
                                     <div className="subtitle">
-                                        Microwave Location: {microwaveNames[review.microwave_id]}
+                                        <p style={{fontWeight:'700', textAlign:'center'}}>Microwave Location: </p>
+                                        <p style={{textAlign:'center'}}>{microwaveNames[review.microwave_id]}</p>
                                     </div>
                                     <div className="review-text">
+                                        <p style={{fontWeight:'700', textAlign:'center'}}>You Wrote: </p>
                                         {review.isEditing ? (
                                             <>
                                                 <textarea
@@ -151,11 +159,11 @@ function Reviews() {
 
                                             </>
                                         ) : (
-                                            <p>{review.review}</p>
+                                            <p style={{inlineSize:'350px', textAlign:'center', paddingLeft:'0px'}}>{review.review}</p>
                                         )}
                                     </div>
                                 </CardContent>
-                                <CardActions>
+                                <CardActions sx={{justifyContent:'center'}}>
                                     <Button startIcon={<StarRateIcon />}>
                                         {`${review.rating || 0} Stars`}
                                     </Button>

@@ -1,3 +1,46 @@
+.signup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MuiCardActions-root .MuiButton-contained {
+  color: black;
+  background-color: goldenrod;
+}
+
+.MuiCardActions-root .MuiButton-contained:hover {
+  color: goldenrod;
+  background-color: black;
+}
+
+.MuiCardActions-root .MuiButton-root {
+  color: black;
+}
+
+.MuiRating-root {
+  align-items: center;
+  position: absolute;
+}
+
+:root {
+  --primary-bg: #ba9b37;
+  --secondary-bg: #000000;
+  --primary-text-color: #555;
+  --secondary-text-color: #cecece;
+  --border-radius: 8px;
+  --speed: 500ms;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary-bg);
+}
+
 @import url("https://fonts.googleapis.com/css?family=Exo:400,700"); /* Reset default styles */
 
 * {
@@ -58,10 +101,15 @@ a {
   background-color: black;
 }
 
+.MuiRating-root {
+  display: flex;
+  align-items: center;
+}
+
 /* Apply fonts to body */
 body {
   font-family: "Exo", sans-serif;
-  overflow: scroll;
+  overflow: scroll; /* Ensures the animation won't create scrollbars */
   position: relative;
 }
 
