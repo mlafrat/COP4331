@@ -31,7 +31,7 @@ ul {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  overflow: hidden;
+  overflow: scroll;
   cursor: pointer;
   background-color: #fff;
 }

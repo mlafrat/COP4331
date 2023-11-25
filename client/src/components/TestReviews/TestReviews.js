@@ -89,7 +89,7 @@ function TestReviews() {
     };
 
     return (
-        <div className="review-wrapper" style={{ maxHeight: '600px', overflowY: 'auto' }}>
+        <div className="review-wrapper" style={{ maxHeight: '600px', overflowY: 'scroll' }}>
             <div style={{ textAlign: 'center' }}>
                 <h1>Microwave Reviews</h1>
                 <h2>Location: {microwaveName}</h2>

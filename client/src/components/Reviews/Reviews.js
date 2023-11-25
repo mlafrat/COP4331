@@ -121,9 +121,9 @@ function Reviews() {
             <Box
                 sx={{
                     maxHeight: '600px', // Adjust maxHeight as needed
-                    overflowY: 'auto',
-                    scrollbarWidth: 'auto', // Show scrollbar in Firefox
-                    webkitOverflowScrolling: 'auto', // Show scrollbar in Webkit browsers
+                    overflowY: 'scroll',
+                    scrollbarWidth: 'auto',
+                    webkitOverflowScrolling: 'scroll', // Show scrollbar in Webkit browsers
                 }}
             >
                 <Grid container spacing={3} columns={{ xs: 12, sm: 6, md: 4 }} sx={{ justifyContent: 'center' }}>
