@@ -21,7 +21,7 @@ function NewReview() {
     //get microwave id
     console.log("receiving microwave id:");
     const microwave_id = window.location.hash.substring(1)
-    console.log(microwave_id);   
+    console.log(microwave_id);
 
     const [formData, setFormData] = useState({
         review: '',
@@ -35,13 +35,13 @@ function NewReview() {
         });
     };
 
-     const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         //define new review to send
         const newWave = {
             review: formData.review,
-            rating: value, 
+            rating: value,
             microwave_id: microwave_id,
             user_id: userId
         }
@@ -71,7 +71,7 @@ function NewReview() {
     //return to previous page
     const handleClose = async () => {
         window.location.href = `/test-reviews#${microwave_id}`;
-    };    
+    };
 
     return (
         <Container component="main" maxWidth="md">
@@ -79,29 +79,29 @@ function NewReview() {
                 component="form"
                 onSubmit={handleSubmit}
                 sx={{
-                  marginTop: 4,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
+                    marginTop: 4,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
                 }}
             >
                 <div>
-                    <h1>New Review</h1>   
+                    <h1>New Review</h1>
                 </div>
                 <div>
-                                <Rating
-                                    name="star-rating"
-                                    sx={{position:"relative"}}
-                                    value={value}
-                    
-                                    onChange={(event, newValue) => {
-                                    setValue(newValue);
-                                    }}
-                                    icon={<MicrowaveIcon fontSize="inherit" sx={{color:"black", alignItems:"center", position:"relative"}} />}
-                                    emptyIcon={<MicrowaveIcon fontSize="inherit" />}
-                                />
-                            </div>
+                    <Rating
+                        name="star-rating"
+                        sx={{position:"relative"}}
+                        value={value}
+
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}
+                        icon={<MicrowaveIcon fontSize="inherit" sx={{color:"black", alignItems:"center", position:"relative"}} />}
+                        emptyIcon={<MicrowaveIcon fontSize="inherit" />}
+                    />
+                </div>
                 <Typography component="legend">1 Star = Terrible, 5 Stars = Knightrolicious</Typography>
                 <div>
                     <TextField
@@ -149,22 +149,22 @@ function NewReview() {
                         onChange={handleChange}
                     />
                 </div>
-             
+
                 <div>
                     <Stack sx={{ pt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Stack direction="row" spacing={4} justifyContent="center">
                             <div>
-                                <Button               
+                                <Button
                                     type="submit"
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 1, position:"absolute" }}>
-                                        Submit Review
+                                    Submit Review
                                 </Button>
                             </div>
                             <div>
-                                <Button 
-                                    onClick={() => handleClose()} 
+                                <Button
+                                    onClick={() => handleClose()}
                                     variant="contained" fullWidth
                                     margin="normal"
                                     sx={{ mt: 3, mb: 2, position:"absolute" }}>Cancel
@@ -174,9 +174,9 @@ function NewReview() {
                     </Stack>
                 </div>
             </Box>
-       </Container> 
+        </Container>
 
-       
+
     );
 }
 
