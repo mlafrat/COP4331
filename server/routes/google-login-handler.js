@@ -19,7 +19,7 @@ module.exports = function(db) {
             // Set user data in a cookie
             res.cookie('user', JSON.stringify(user), { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) }); // Expires in 7 days
 
-            res.redirect('http://localhost:3000/dashboard');
+            res.redirect('http://knightrowave.com/dashboard');
         } else {
             // User is not in the database, proceed with insertion
             const lastUser = await db.collection("userData").find().sort({ user_id: -1 }).limit(1).toArray();
@@ -45,7 +45,7 @@ module.exports = function(db) {
             // Set user data in a cookie
             res.cookie('user', JSON.stringify(user), { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) }); // Expires in 7 days
 
-            res.redirect('http://localhost:3000/dashboard');
+            res.redirect('http://knightrowave.com/dashboard');
         }
     });
 

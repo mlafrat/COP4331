@@ -41,7 +41,7 @@ function ProfileSettings() {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/editProfile/${userId}`,
+        `http://knightrowave.com/editProfile/${userId}`,
         {
           method: "PUT",
           body: formDataWithProfilePic,

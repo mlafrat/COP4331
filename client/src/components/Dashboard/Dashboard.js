@@ -11,7 +11,10 @@ import Map from '../Map/Map';
 
 function Dashboard() {
     const [microwaves, setMicrowaves] = useState([]);
-    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    const apiUrl = "http://knightrowave.com";
+    console.log(apiUrl);
+    
+    //|| "http://localhost:3001";
 
     const initializeMicrowaves = (microwaveData) => {
         const microwaves = microwaveData.map((microwave) => ({

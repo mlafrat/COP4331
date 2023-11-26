@@ -13,7 +13,7 @@ import { Container, Box, Stack } from "@mui/material";
 function NewReview() {
     //get rating
     const [value, setValue] = React.useState(2);
-    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    const apiUrl = "http://knightrowave.com";
 
     //get user id
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, DirectionsService, DirectionsRenderer, LoadScript } from '@react-google-maps/api';
 
-const googleApiKey = 'AIzaSyBBVLikZWGvzI6BZ3zER1DDcOMcGXmm2ZI';
-//'AIzaSyCTEc8bsYUd3rG7vHK3bdIKDH14iDbFXZ0';
+const googleApiKey = '';
 const mapContainerStyle = {
   width: '1500px',
   height: '800px',
@@ -74,11 +73,11 @@ const MapWithDirections = () => {
 useEffect(()=> {
     if(origin && destination)
     {
-        fetchDirections(origin,destination);
+        //fetchDirections(origin,destination);
     }
 },[origin,destination]);
 
-
+/*
 const fetchDirections = (origin, destination) => {
     if (window.google && window.google.maps) {    
         const directionsService = new window.google.maps.DirectionsService();
@@ -99,6 +98,7 @@ const fetchDirections = (origin, destination) => {
         );
     }
 };
+*/
 if (!origin || !destination) {
 
 }
@@ -119,22 +119,8 @@ if (!origin || !destination) {
               icon = {MarkerIcon}
             />
 
-
-            <DirectionsService
-              options={{
-                origin: directions.request.origin,
-                destination: directions.request.destination,
-                travelMode: window.google.maps.TravelMode.WALKING,
-              }}
-              callback={(result) => {
-                if (result !== null) {
-                  setDirections(result);
-                }
-              }}
-            />
-            <DirectionsRenderer
-              options={{ directions: directions, suppressMarkers: true }}
-            />
+            
+            
           </>
         )}
       </GoogleMap>

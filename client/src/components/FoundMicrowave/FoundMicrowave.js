@@ -6,7 +6,7 @@ import { Container, Box, TextField, Stack } from "@mui/material";
 function FoundMicrowave() {
     const userData = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null;
     const userId = userData ? userData.user_id : null;
-    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    const apiUrl = "http://knightrowave.com";
 
     const [imageFile, setImageFile] = useState(null);
     const [imageName, setImageName] = useState("");

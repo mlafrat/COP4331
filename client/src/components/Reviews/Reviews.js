@@ -16,7 +16,7 @@ function Reviews() {
     const [reviews, setReviews] = useState([]);
     const [editedRating, setEditedRating] = useState(0);
     const [microwaveNames, setMicrowaveNames] = useState({});
-    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+    const apiUrl = "http://knightrowave.com";
 
     const fetchMicrowaveName = async (microwaveId) => {
         try {

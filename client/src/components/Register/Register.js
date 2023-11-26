@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 export default function SignUp() {
-  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+  const apiUrl = "http://knightrowave.com";
   const [formData, setFormData] = useState({
     email: "",
     username: "",

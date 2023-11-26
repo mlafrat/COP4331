@@ -8,8 +8,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 export default function Login({ setToken }) {
-  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
-
+  const apiUrl = "http://knightrowave.com";
+  //|| "http://localhost:3001";
+  console.log(apiUrl);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
