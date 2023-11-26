@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import user from './user.png';
-import star from './star.png'
+import star from './star.png';
 import microwave from './microwave.png';
 import logout from './logout.png';
 import knightro from './knightro.png';
@@ -13,6 +13,7 @@ function Dropdown() {
   const [open, setOpen] = useState(false);
   const dropRef = useRef();
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     let handler = (e) => {
@@ -29,25 +30,19 @@ function Dropdown() {
   }, []);
 
   const handleLogout = () => {
-    // Remove the user cookie when logging out
     Cookies.remove('user');
   };
 
-  // Retrieve user data from cookie
   const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
   const userName = userData ? userData.username : '';
-  const loginMethod = userData ? userData.loginMethod : ''; // Added loginMethod check
+  const loginMethod = userData ? userData.loginMethod : '';
 
-  // Determine the profile image based on the login method
   let profileImage;
   if (loginMethod !== 'local' && userData?.googleProfileImage) {
-    // Use the Google profile image if available
     profileImage = userData.googleProfileImage;
   } else if (userData?.profilePicUrl) {
-    // Use the uploaded profile picture if available
     profileImage = userData.profilePicUrl;
   } else {
-    // Use the default image for other login methods
     profileImage = knightro;
   }
 
@@ -60,14 +55,18 @@ function Dropdown() {
           <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`} >
             <h3>Welcome, {userName}!<br /></h3>
             <ul>
-              {location.pathname !== "/dashboard" && (
-                  <li className='dropdownItem'>
-                    <Link to="/dashboard">
-                      <img src={home} alt="Return to Home" />
-                      Home
-                    </Link>
-                  </li>
-              )}
+              <li
+                  className='dropdownItem'
+                  onClick={() => {
+                    if (location.pathname !== "/dashboard") {
+                      history.push("/dashboard");
+                      window.location.reload();
+                    }
+                  }}
+              >
+                <img src={home} alt="Return to Home" />
+                Home
+              </li>
               {loginMethod === 'local' && location.pathname !== "/profile-settings" && (
                   <li className='dropdownItem'>
                     <Link to="/profile-settings">
