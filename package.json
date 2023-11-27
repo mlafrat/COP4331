@@ -20,13 +20,13 @@
   },
   "name": "knightrowave",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "node index.js",
+    "server": "node server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
-    "server-dev": "nodemon index.js",
+    "server-dev": "nodemon server.js",
     "client-dev": "cd client && npm start"
   },
   "keywords": [],
@@ -35,5 +35,6 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^8.2.2"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
