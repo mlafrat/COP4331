@@ -47,7 +47,6 @@ function Dashboard() {
         <div className="review-wrapper">
             <h2 style={{ padding: '10px' }}>Microwaves</h2>
             <Box sx={{ flexGrow: 1, display:'flex', flexDirection:'row' }}>
-                <Map/>
                 <Grid
                     container
                     spacing={3}
