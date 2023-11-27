@@ -6,7 +6,6 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import './Dashboard.css';
-import Map from '../Map/Map';
 
 
 function Dashboard() {
@@ -47,7 +46,6 @@ function Dashboard() {
         <div className="review-wrapper">
             <h2 style={{ padding: '10px' }}>Microwaves</h2>
             <Box sx={{ flexGrow: 1, display:'flex', flexDirection:'row' }}>
-                <Map/>
                 <Grid
                     container
                     spacing={3}
