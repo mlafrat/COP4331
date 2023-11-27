@@ -4,19 +4,19 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Routes,
   Redirect,
 } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
-import Login from "../Login/Login";
-import Register from "../Register/Register";
-import Dropdown from "../Dropdown/Dropdown";
-import ProfileSettings from "../ProfileSettings/ProfileSettings";
-import ChangePassword from "../ChangePassword/ChangePassword";
-import FoundMicrowave from "../FoundMicrowave/FoundMicrowave";
-import Reviews from "../Reviews/Reviews";
-import { Container } from "@material-ui/core";
-import TestReviews from '../TestReviews/TestReviews';
-import NewReview from '../NewReview/NewReview';
+import Dashboard from "./components/Dashboard/Dashboard.js";
+import Login from "./components/Login/Login.js";
+import Register from "./components/Register/Register.js";
+import Dropdown from "./components/Dropdown/Dropdown.js";
+import ProfileSettings from "./components/ProfileSettings/ProfileSettings.js";
+import ChangePassword from "./components/ChangePassword/ChangePassword.js";
+import FoundMicrowave from "./components/FoundMicrowave/FoundMicrowave.js";
+import Reviews from "./components/Reviews/Reviews.js";
+import TestReviews from './components/TestReviews/TestReviews.js';
+import NewReview from './components/NewReview/NewReview.js';
 
 
 
@@ -74,3 +74,23 @@ function App() {
 }
 
 export default App;
+
+/*
+      <Router>
+        <Switch>
+            <Route path="/" element={<Login/>}></Route>
+            <Route path="/test-reviews" element={<TestReviews/>}></Route>
+            <Route path="/new-review" element={<NewReview/>}></Route>
+            <Route path="/dashboard" element={<Dashboard/>}></Route>
+            <Route path="/profile-settings" element={<ProfileSettings/>}></Route>
+            <Route path="/change-password" element={<ChangePassword/>}></Route>
+            <Route path="/my-reviews" element={<Reviews/>}></Route>
+            <Route path="/found-microwave" element={<FoundMicrowave/>}></Route>
+            <Route path="/login" element={<Login setToken={setToken}/>}></Route>
+            <Route path="/register" element={<Register setToken={setToken}/>}></Route>
+        </Switch>
+      </Router>
+
+
+      
+*/
