@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700"); /* Reset default styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Override conflicting styles */
+.star-rating-container {
+  position: relative;
+  z-index: auto;
+}
+
+.text-box {
+  position: relative;
+  z-index: 9999;
+}
+
+/* Basic styles */
+.wrapper {
+  padding-top: 0;
+  color: black;
+  text-align: left;
+}
+
+.rectangle {
+  height: 65px;
+  width: 100%;
+  background: black;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.MuiBox-root .MuiButton-contained {
+  color: goldenrod;
+  background-color: black;
+}
+
+.MuiBox-root .MuiButton-contained:hover {
+  color: black;
+  background-color: goldenrod;
+}
+
+.MuiBox-root .MuiButton-contained .MuiButton-root {
+  color: black;
+  background-color: goldenrod;
+}
+
+a {
+  color: goldenrod;
+  background-color: black;
+}
+
+/* Apply fonts to body */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  overflow: scroll;
+  position: relative;
+}
+
+.context {
+  width: 100%;
+  position: absolute;
+  top: 50vh;
+}
+
+.context h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 50px;
+}
+
+.area {
+  background: #ba9b37;
+  background: -webkit-linear-gradient(to left, #f4d56f, #ba9b37);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Places it behind everything */
+}
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+}
+
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+  animation-duration: 15s;
+}
+
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
