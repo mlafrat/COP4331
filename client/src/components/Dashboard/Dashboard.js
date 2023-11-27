@@ -6,7 +6,6 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import './Dashboard.css';
-import Map from '../Map/Map';
 
 
 function Dashboard() {
